@@ -1,5 +1,5 @@
 <template lang="pug">
-.member
+.team
   .container
     ul.member-list
       li.member-item(
@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.member
+.team
   .member-list
     list-style: none
     display: flex
