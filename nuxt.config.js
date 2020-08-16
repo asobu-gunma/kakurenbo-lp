@@ -29,12 +29,14 @@ export default {
   ** Global CSS
   */
   css: [
+    "ress"
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/lazyLoad.js' },
   ],
   /*
   ** Auto import components
@@ -52,7 +54,14 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+    '@nuxtjs/style-resources',
   ],
+  styleResources: {
+    sass: [
+      '@/assets/sass/constants.sass',
+      '@/assets/sass/plugins.sass'
+    ]
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
