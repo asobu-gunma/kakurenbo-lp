@@ -23,6 +23,15 @@
       description="戦士たちよ剣を握れ"
     )
     s-event(:event="event")
+  section.section.section-dark
+    p-section-header#contact(
+      title="お問い合わせ",
+      subtitle="Get In Touch",
+      description="気兼ねなく お気軽に ご連絡ください",
+      titleColor="#CC9933",
+      subtitleColor="white"
+    )
+    s-contact
 </template>
 
 <script>
@@ -31,6 +40,7 @@ import SPagetop from "@/components/sections/Pagetop";
 import STeam from "@/components/sections/Team";
 import SBlog from "@/components/sections/Blog";
 import SEvent from "@/components/sections/Event";
+import SContact from "@/components/sections/Contact";
 
 export default {
   components: {
@@ -39,6 +49,7 @@ export default {
     STeam,
     SBlog,
     SEvent,
+    SContact,
   },
   async asyncData({ app }) {
     const blogRes = await app.$ctfClient.getEntries({
@@ -69,3 +80,11 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+#wrapper
+  .section
+    padding-bottom: 100px
+  .section-dark
+    background-color: $primary-dark
+</style>
