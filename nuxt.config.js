@@ -41,6 +41,7 @@ export default {
   */
   plugins: [
     { src: '~/plugins/contentful.js' },
+    { src: '~/plugins/dateFormat.js' },
     { src: '~/plugins/lazyLoad.js' },
   ],
   /*
