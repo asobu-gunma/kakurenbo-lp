@@ -25,7 +25,6 @@ export default {
   height: 100vh
   background-size: cover
   background-position: center center
-  margin-bottom: 100px
   .top-text
     position: absolute
     top: 50%
