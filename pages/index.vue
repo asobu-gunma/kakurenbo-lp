@@ -38,6 +38,7 @@
       description="最新のチャレンジや動向をコンテンツとしてお届け"
     )
     s-blog(:blogPosts="blogPosts")
+    p-blog-link-button
   section.section
     p-section-header(
       title="次回開催予定",
@@ -58,6 +59,7 @@
 
 <script>
 import PSectionHeader from "@/components/parts/SectionHeader";
+import PBlogLinkButton from "@/components/parts/BlogLinkButton";
 import SPagetop from "@/components/sections/Pagetop";
 import SAbout from "@/components/sections/About";
 import SConcept from "@/components/sections/Concept";
@@ -71,6 +73,7 @@ import SContact from "@/components/sections/Contact";
 export default {
   components: {
     PSectionHeader,
+    PBlogLinkButton,
     SPagetop,
     SAbout,
     SConcept,

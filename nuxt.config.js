@@ -22,18 +22,23 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Montserrat:400,700%7cOpen+Sans:100,200,300,400,700' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Sawarabi+Mincho' }
     ]
   },
   env: {
     ctfSpaceId: process.env.CTF_SPACE_ID,
     ctfCdaAccessToken: process.env.CTF_CDA_ACCESS_TOKEN,
+    pageLimit: 10,
   },
   /*
   ** Global CSS
   */
   css: [
-    "ress"
+    'ress',
+    'github-markdown-css',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -61,12 +66,17 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
+    '@nuxtjs/markdownit',
+    '@/modules/paging.js'
   ],
   styleResources: {
     sass: [
       '@/assets/sass/constants.sass',
       '@/assets/sass/plugins.sass'
     ]
+  },
+  markdownit: {
+    injected: true
   },
   /*
   ** Build configuration
