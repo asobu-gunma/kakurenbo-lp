@@ -11,6 +11,13 @@
     s-about
   section.section
     p-section-header(
+      title="コンセプト",
+      subtitle="Our Concept",
+      description="かくれんぼの設計にあたり"
+    )
+    s-concept
+  section.section
+    p-section-header(
       title="ギャラリー",
       subtitle="Photo Gallery",
       description="百聞は一見にしかず"
@@ -53,6 +60,7 @@
 import PSectionHeader from "@/components/parts/SectionHeader";
 import SPagetop from "@/components/sections/Pagetop";
 import SAbout from "@/components/sections/About";
+import SConcept from "@/components/sections/Concept";
 import SGallery from "@/components/sections/Gallery";
 import SGallerySp from "@/components/sections/GallerySp";
 import STeam from "@/components/sections/Team";
@@ -65,6 +73,7 @@ export default {
     PSectionHeader,
     SPagetop,
     SAbout,
+    SConcept,
     SGallery,
     SGallerySp,
     STeam,
