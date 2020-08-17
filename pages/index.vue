@@ -4,6 +4,14 @@
     s-pagetop
   section.section
     p-section-header(
+      title="ギャラリー",
+      subtitle="Photo Gallery",
+      description="百聞は一見にしかず"
+    )
+    s-gallery(:gallery="gallery")
+    s-gallery-sp(:gallery="gallery")
+  section.section
+    p-section-header(
       title="運営チーム",
       subtitle="Team Member",
       description="ともに歩む仲間たち"
@@ -37,6 +45,8 @@
 <script>
 import PSectionHeader from "@/components/parts/SectionHeader";
 import SPagetop from "@/components/sections/Pagetop";
+import SGallery from "@/components/sections/Gallery";
+import SGallerySp from "@/components/sections/GallerySp";
 import STeam from "@/components/sections/Team";
 import SBlog from "@/components/sections/Blog";
 import SEvent from "@/components/sections/Event";
@@ -46,24 +56,32 @@ export default {
   components: {
     PSectionHeader,
     SPagetop,
+    SGallery,
+    SGallerySp,
     STeam,
     SBlog,
     SEvent,
     SContact,
   },
   async asyncData({ app }) {
-    const blogRes = await app.$ctfClient.getEntries({
-      content_type: "blog",
-      order: "-sys.createdAt",
-      limit: 3,
+    const galleryRes = await app.$ctfClient.getEntries({
+      content_type: "gallery",
     });
-    const blogPosts = blogRes.items;
+    const gallery = galleryRes.items[0].fields.photos;
+    console.log(gallery);
 
     const memberRes = await app.$ctfClient.getEntries({
       content_type: "member",
       order: "fields.position",
     });
     const memberList = memberRes.items;
+
+    const blogRes = await app.$ctfClient.getEntries({
+      content_type: "blog",
+      order: "-sys.createdAt",
+      limit: 3,
+    });
+    const blogPosts = blogRes.items;
 
     const eventRes = await app.$ctfClient.getEntries({
       content_type: "event",
@@ -73,8 +91,9 @@ export default {
     const event = eventRes.items[0];
 
     return {
-      blogPosts,
+      gallery,
       memberList,
+      blogPosts,
       event,
     };
   },
