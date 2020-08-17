@@ -43,7 +43,6 @@ export default {
     margin-bottom: 0
   .section-subtitle
     font-family: $en-accent-family
-    font-size: 20px
     font-weight: normal
     letter-spacing: 4px
     margin-bottom: 30px
@@ -55,11 +54,15 @@ export default {
   @include media-breakpoint-up(sm)
     .section-title
       font-size: 40px
+    .section-subtitle
+      font-size: 20px
     .section-description
       font-size: 16px
   @include media-breakpoint-down(xs)
     .section-title
-      font-size: 36px
+      font-size: 30px
+    .section-subtitle
+      font-size: 16px
     .section-description
       font-size: 14px
       padding: 0 10px

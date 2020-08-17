@@ -4,6 +4,13 @@
     s-pagetop
   section.section
     p-section-header(
+      title="かくれんぼ in ぐんま",
+      subtitle="What Kakurenbo in Gunma?",
+      description="私達の成り立ちと想い"
+    )
+    s-about
+  section.section
+    p-section-header(
       title="ギャラリー",
       subtitle="Photo Gallery",
       description="百聞は一見にしかず"
@@ -45,6 +52,7 @@
 <script>
 import PSectionHeader from "@/components/parts/SectionHeader";
 import SPagetop from "@/components/sections/Pagetop";
+import SAbout from "@/components/sections/About";
 import SGallery from "@/components/sections/Gallery";
 import SGallerySp from "@/components/sections/GallerySp";
 import STeam from "@/components/sections/Team";
@@ -56,6 +64,7 @@ export default {
   components: {
     PSectionHeader,
     SPagetop,
+    SAbout,
     SGallery,
     SGallerySp,
     STeam,
