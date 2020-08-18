@@ -45,6 +45,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/burgerButton.js', ssr: false },
     { src: '~/plugins/contentful.js' },
     { src: '~/plugins/dateFormat.js' },
     { src: '~/plugins/lazyLoad.js' },
@@ -67,6 +68,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
     '@nuxtjs/markdownit',
+    ['vue-scrollto/nuxt', { duration: 500 }],
     '@/modules/paging.js'
   ],
   styleResources: {

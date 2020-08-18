@@ -1,18 +1,25 @@
 <template lang="pug">
 .welcome
   #pageTop.page-top(v-lazy:background-image="topImage")
-    .top-text
-      .title I'M TOYOKAWA YUTA
-      .subtitle Official Site
+    .logo
+      img(v-lazy="logo")
+    .subtitle 笑顔で帰ろう！(めちゃめちゃ適当)
+  g-header
 </template>
 
 <script>
 import topImage from "@/assets/images/pagetop.jpg";
+import logo from "@/assets/images/logo.svg";
+import GHeader from "@/components/global/Header";
 
 export default {
+  components: {
+    GHeader,
+  },
   data() {
     return {
       topImage,
+      logo,
     };
   },
 };
@@ -22,33 +29,35 @@ export default {
 .page-top
   position: relative
   width: 100%
-  height: 100vh
+  height: calc(100vh - 100px)
   background-size: cover
   background-position: center center
-  .top-text
+  &::after
+    content: ""
+    background: linear-gradient(45deg, #FFC32A 50%, transparent 52%), linear-gradient(315deg, #FFC32A 50%, transparent 52%)
+    background-size: 25px
+    width: 100%
+    height: 25px
     position: absolute
-    top: 50%
+    bottom: -10px
+  .logo
+    text-align: center
+    padding-top: 25px
+    img
+      width: 250px
+  .subtitle
+    position: absolute
+    bottom: 100px
     left: 50%
-    transform: translateX(-50%) translateY(-50%)
+    transform: translateX(-50%)
     color: white
-    font-family: $en-accent-family
     text-align: center
     width: 100%
     margin: auto
     @include media-breakpoint-up(sm)
-      .title
-        font-size: 60px
-        font-weight: bold
-        letter-spacing: 5px
-      .subtitle
-        font-size: 24px
-        letter-spacing: 3px
+      font-size: 24px
+      letter-spacing: 3px
     @include media-breakpoint-down(xs)
-      .title
-        font-size: 42px
-        font-weight: bold
-        letter-spacing: 5px
-      .subtitle
-        font-size: 16px
-        letter-spacing: 3px
+      font-size: 16px
+      letter-spacing: 3px
 </style>

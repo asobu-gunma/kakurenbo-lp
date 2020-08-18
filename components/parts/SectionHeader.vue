@@ -1,5 +1,7 @@
 <template lang="pug">
 .section-header
+  .section-logo
+    img(v-lazy="logo")
   .section-title(:style="`color: ${titleColor};`") {{ title }}
   .section-subtitle(:style="`color: ${subtitleColor};`") {{ subtitle }}
   .section-description {{ description }}
@@ -8,6 +10,9 @@
 <script>
 export default {
   props: {
+    logo: {
+      type: String,
+    },
     title: {
       type: String,
       required: true,
@@ -35,8 +40,11 @@ export default {
 <style lang="sass" scoped>
 .section-header
   text-align: center
-  padding-top: 100px
+  margin-top: 50px
+  padding-top: 50px
   padding-bottom: 80px
+  .section-logo
+    margin-bottom: 20px
   .section-title
     font-family: $ja-accent-family
     letter-spacing: 5px
@@ -52,6 +60,9 @@ export default {
     font-weight: normal
     letter-spacing: 3px
   @include media-breakpoint-up(sm)
+    .section-logo
+      img
+        width: 80px
     .section-title
       font-size: 40px
     .section-subtitle
@@ -59,6 +70,9 @@ export default {
     .section-description
       font-size: 16px
   @include media-breakpoint-down(xs)
+    .section-logo
+      img
+        width: 60px
     .section-title
       font-size: 30px
     .section-subtitle
