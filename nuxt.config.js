@@ -68,7 +68,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
     '@nuxtjs/markdownit',
-    ['vue-scrollto/nuxt', { duration: 500 }],
+    ['vue-scrollto/nuxt', { duration: 500, offset: -50 }],
     '@/modules/paging.js'
   ],
   styleResources: {
@@ -85,5 +85,6 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    hardSource: true,
   }
 }

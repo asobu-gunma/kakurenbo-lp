@@ -1,5 +1,7 @@
 <template lang="pug">
-header.navbar.navbar-expand-lg.header-nav
+header.navbar.navbar-expand-lg.header-nav(
+  :class="{ 'fixed-top': $store.state.isFixed }"
+)
   nav.container
     .toggle-button
       client-only
@@ -100,11 +102,15 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.header-nav.fixed-top
+  height: 50px
+  .icon
+    display: none
 .header-nav
   height: 100px
   font-family: $en-accent-family
   text-align: center
-  background-color: #FFC32A
+  background-color: $accent-color
   .logo
     font-weight: bold
     padding: 0 10px
@@ -137,7 +143,7 @@ export default {
     left: 50%
     transform: translateX(-50%)
     width: 100%
-    background-color: #FFC32A
+    background-color: $accent-color
     visibility: hidden
     opacity: 0
     transition: 0.3s

@@ -1,5 +1,5 @@
 <template lang="pug">
-.welcome
+.welcome(:class="{ fixed: $store.state.isFixed }")
   #pageTop.page-top(v-lazy:background-image="topImage")
     .logo
       img(v-lazy="logo")
@@ -26,6 +26,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.fixed
+  margin-top: 100px
+  .page-top::after
+    bottom: 0
 .page-top
   position: relative
   width: 100%

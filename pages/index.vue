@@ -143,6 +143,24 @@ export default {
       event,
     };
   },
+  mounted() {
+    this.changeScrollTop();
+    document.onscroll = () => {
+      this.changeScrollTop();
+    };
+  },
+  methods: {
+    changeScrollTop() {
+      const el =
+        document.scrollingElement || document.documentElement || document.body;
+      const scrollTop = el.scrollTop;
+      const pageTop = document.querySelector("#pageTop");
+      if (!pageTop) return;
+
+      const isFixed = scrollTop > pageTop.clientHeight + 50;
+      this.$store.commit("fix", isFixed);
+    },
+  },
 };
 </script>
 
