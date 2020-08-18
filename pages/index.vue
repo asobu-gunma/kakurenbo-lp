@@ -144,9 +144,24 @@ export default {
     };
   },
   mounted() {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === "scroll" || mutation.type === "resize") {
+        const pageTop = document.querySelector("#pageTop");
+        if (!pageTop) return;
+
+        const isFixed =
+          state.scrollTop > pageTop.clientHeight + 50 ||
+          state.clientWidth < 991.98;
+        this.$store.commit("fix", isFixed);
+      }
+    });
     this.changeScrollTop();
+    this.changeClientWidth();
     document.onscroll = () => {
       this.changeScrollTop();
+    };
+    window.onresize = () => {
+      this.changeClientWidth();
     };
   },
   methods: {
@@ -154,11 +169,11 @@ export default {
       const el =
         document.scrollingElement || document.documentElement || document.body;
       const scrollTop = el.scrollTop;
-      const pageTop = document.querySelector("#pageTop");
-      if (!pageTop) return;
-
-      const isFixed = scrollTop > pageTop.clientHeight + 50;
-      this.$store.commit("fix", isFixed);
+      this.$store.commit("scroll", scrollTop);
+    },
+    changeClientWidth() {
+      const clientWidth = document.body.clientWidth;
+      this.$store.commit("resize", clientWidth);
     },
   },
 };

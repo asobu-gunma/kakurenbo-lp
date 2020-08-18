@@ -27,15 +27,21 @@ export default {
 
 <style lang="sass" scoped>
 .fixed
-  margin-top: 100px
+  @include media-breakpoint-up(lg)
+    margin-top: 100px
+  @include media-breakpoint-down(md)
+    margin-top: 50px
   .page-top::after
-    bottom: 0
+    display: none
 .page-top
   position: relative
   width: 100%
-  height: calc(100vh - 100px)
   background-size: cover
   background-position: center center
+  @include media-breakpoint-up(lg)
+    height: calc(100vh - 100px)
+  @include media-breakpoint-down(md)
+    height: calc(100vh - 50px)
   &::after
     content: ""
     background: linear-gradient(45deg, #FFC32A 50%, transparent 52%), linear-gradient(315deg, #FFC32A 50%, transparent 52%)

@@ -9,6 +9,7 @@ header.navbar.navbar-expand-lg.header-nav(
           type="spin",
           color="black",
           size="s",
+          :active="isActive",
           @toggle="toggleNavMenu",
           ref="burgerButton"
         )
@@ -52,19 +53,40 @@ header.navbar.navbar-expand-lg.header-nav(
   #navbarMenu.container
     ul.navbar-nav(@click="toggleActive")
       li.nav-item
-        n-link.nav-link(v-scroll-to="'#about'", to) ABOUT
+        n-link.nav-link(v-scroll-to="'#about'", to)
+          span.icon
+            img(v-lazy="about")
+          span.text ABOUT
       li.nav-item
-        n-link.nav-link(v-scroll-to="'#concept'", to) CONCEPT
+        n-link.nav-link(v-scroll-to="'#concept'", to)
+          span.icon
+            img(v-lazy="concept")
+          span.text CONCEPT
       li.nav-item
-        n-link.nav-link(v-scroll-to="'#gallery'", to) GALLERY
+        n-link.nav-link(v-scroll-to="'#gallery'", to)
+          span.icon
+            img(v-lazy="gallery")
+          span.text GALLERY
       li.nav-item
-        n-link.nav-link(v-scroll-to="'#team'", to) TEAM
+        n-link.nav-link(v-scroll-to="'#team'", to)
+          span.icon
+            img(v-lazy="team")
+          span.text TEAM
       li.nav-item
-        n-link.nav-link(v-scroll-to="'#blog'", to) BLOG
+        n-link.nav-link(v-scroll-to="'#blog'", to)
+          span.icon
+            img(v-lazy="blog")
+          span.text BLOG
       li.nav-item
-        n-link.nav-link(v-scroll-to="'#event'", to) EVENT
+        n-link.nav-link(v-scroll-to="'#event'", to)
+          span.icon
+            img(v-lazy="event")
+          span.text EVENT
       li.nav-item
-        n-link.nav-link(v-scroll-to="'#contact'", to) CONTACT
+        n-link.nav-link(v-scroll-to="'#contact'", to)
+          span.icon
+            img(v-lazy="contact")
+          span.text CONTACT
 </template>
 
 <script>
@@ -87,6 +109,7 @@ export default {
       event,
       contact,
       activeLink: "",
+      isActive: false,
     };
   },
   methods: {
@@ -95,7 +118,7 @@ export default {
       active ? nav.classList.add("visible") : nav.classList.remove("visible");
     },
     toggleActive() {
-      this.$refs.burgerButton.toggle();
+      this.isActive = !this.isActive;
     },
   },
 };
@@ -104,7 +127,7 @@ export default {
 <style lang="sass" scoped>
 .header-nav.fixed-top
   height: 50px
-  .icon
+  div.icon
     display: none
 .header-nav
   height: 100px
@@ -127,10 +150,14 @@ export default {
     .nav-link
       color: #4C4C4C
       font-weight: bold
-      .icon
+      div.icon
         margin-bottom: 5px
         img
           width: 30px
+      span.icon
+        margin-right: 5px
+        img
+          width: 20px
 @include media-breakpoint-down(md)
   .toggle-button
     display: block !important
@@ -139,7 +166,7 @@ export default {
   #navbarMenu
     display: block !important
     position: fixed
-    top: 50px
+    top: 70px
     left: 50%
     transform: translateX(-50%)
     width: 100%
@@ -154,9 +181,13 @@ export default {
       width: 100%
       padding: 0 20px
       .nav-item
-        padding: 20px 0
+        padding: 15px 0
         border-bottom: 1px solid $secondary-grey
         margin-left: 0 !important
         &:last-child
           border-bottom: none
+        .nav-link
+          display: flex
+          align-items: center
+          justify-content: center
 </style>
