@@ -14,22 +14,22 @@ anchors: &anchor-deploy
           fi
 
 executors:
-  deploy:
+  build:
     <<: *defaults
     docker:
       - image: asobugunma/kakurenbo-lp-deployer-docker
 
 jobs:
-  deploy-prd:
+  build:
     executor:
-      name: deploy
+      name: build
     <<: *anchor-deploy
 
 workflows:
   version: 2
-  build:
+  delpoy:
     jobs:
-      - deploy-prd:
+      - build:
           filters:
             branches:
               only:
