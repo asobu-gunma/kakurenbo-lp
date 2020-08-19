@@ -1,0 +1,36 @@
+version: 2.1
+
+defaults: &defaults
+  working_directory: ~/kakurenbo-lp
+
+anchors: &anchor-deploy
+  steps:
+    - checkout
+    - run:
+        name: Build and deploy to S3 bucket
+        command: |
+          if [ $CIRCLE_BRANCH = 'master' ]; then
+            deployer/bin/deploy.sh production
+          fi
+
+executors:
+  deploy:
+    <<: *defaults
+    docker:
+      - image: asobugunma/kakurenbo-lp-deployer-docker
+
+jobs:
+  deploy-prd:
+    executor:
+      name: deploy
+    <<: *anchor-deploy
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy-prd:
+          filters:
+            branches:
+              only:
+                - master
