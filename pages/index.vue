@@ -58,13 +58,15 @@
       title="お問い合わせ",
       subtitle="Get In Touch",
       description="気兼ねなく お気軽に ご連絡ください",
-      titleColor="#CC9933",
+      titleColor="#FFC32A",
       subtitleColor="white"
     )
     s-contact
+  g-footer
 </template>
 
 <script>
+import GFooter from "@/components/global/Footer";
 import PSectionHeader from "@/components/parts/SectionHeader";
 import PBlogLinkButton from "@/components/parts/BlogLinkButton";
 import SPagetop from "@/components/sections/Pagetop";
@@ -87,6 +89,7 @@ import contactLogo from "@/assets/images/contact.svg";
 
 export default {
   components: {
+    GFooter,
     PSectionHeader,
     PBlogLinkButton,
     SPagetop,

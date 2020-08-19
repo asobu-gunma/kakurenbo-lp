@@ -11,10 +11,11 @@
     )
   section.section.section-dark
     p-section-header(
+      :logo="contactLogo",
       title="お問い合わせ",
       subtitle="Get In Touch",
       description="気兼ねなく お気軽に ご連絡ください",
-      titleColor="#CC9933",
+      titleColor="#FFC32A",
       subtitleColor="white"
     )
     s-contact
@@ -30,6 +31,8 @@ import MPaging from "@/components/modules/Paging";
 import SBlog from "@/components/sections/Blog";
 import SContact from "@/components/sections/Contact";
 
+import contactLogo from "@/assets/images/contact.svg";
+
 export default {
   components: {
     GFooter,
@@ -39,6 +42,11 @@ export default {
     MPaging,
     SBlog,
     SContact,
+  },
+  data() {
+    return {
+      contactLogo,
+    };
   },
   async asyncData({ route, app, env }) {
     let pageNum = 1;

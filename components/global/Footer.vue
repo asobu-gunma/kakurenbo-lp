@@ -1,8 +1,8 @@
 <template lang="pug">
-  footer.footer
-    span &copy;
-    strong.mr-1 TOYOKAWA YUTA
-    span 2020
+footer.footer
+  span &copy;
+  strong.mr-1 TOYOKAWA YUTA
+  span 2020
 </template>
 
 <style lang="sass" scoped>

@@ -148,7 +148,7 @@ export default {
   .nav-item
     margin-left: 20px
     .nav-link
-      color: #4C4C4C
+      color: $primary-grey
       font-weight: bold
       div.icon
         margin-bottom: 5px

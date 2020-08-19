@@ -102,17 +102,18 @@ export default {
     margin-top: 50px
     .submit-button
       display: inline-block
-      color: white
+      color: $primary-grey
       font-size: 24px
+      font-weight: bold
       background-color: $accent-color
-      padding: 12px 24px
+      padding: 12px 30px
       border: 3px solid $accent-color
       border-radius: 5px
       cursor: pointer
       transition: 0.3s
       &:hover
-        color: $accent-color
-        background-color: white
+        opacity: 0.7
+        text-decoration: none
   .preparing
     text-align: center
     font-size: 20px
