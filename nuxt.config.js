@@ -1,3 +1,17 @@
+const pageLimit = 10
+
+const fetchBlogRes = async () => {
+  const contentful = require('contentful')
+  const client = contentful.createClient({
+    space: process.env.CTF_SPACE_ID,
+    accessToken: process.env.CTF_CDA_ACCESS_TOKEN
+  })
+  const blogRes = await client.getEntries({
+    content_type: 'blog',
+    order: '-sys.createdAt'
+  })
+  return blogRes
+}
 
 export default {
   /*
@@ -31,7 +45,7 @@ export default {
   env: {
     ctfSpaceId: process.env.CTF_SPACE_ID,
     ctfCdaAccessToken: process.env.CTF_CDA_ACCESS_TOKEN,
-    pageLimit: 10,
+    pageLimit,
   },
   /*
   ** Global CSS
@@ -86,5 +100,20 @@ export default {
   */
   build: {
     hardSource: true,
+  },
+  generate: {
+    async routes() {
+      const blogRes = await fetchBlogRes()
+      const totalPages = Math.ceil(blogRes.total / pageLimit);
+      const pageRange = [...Array(totalPages).keys()]
+      let urls = pageRange.map(pageNum => ({
+        route: `/blogs/page/${pageNum + 1}`
+      }))
+      urls = urls.concat(blogRes.items.map(item => ({
+        route: `/blogs/${item.fields.slug}`,
+        payload: item
+      })))
+      return urls
+    }
   }
 }
