@@ -27,7 +27,7 @@ jobs:
 
 workflows:
   version: 2
-  delpoy:
+  build:
     jobs:
       - build:
           filters:
