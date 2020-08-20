@@ -6,12 +6,27 @@ defaults: &defaults
 anchors: &anchor-deploy
   steps:
     - checkout
+    - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
     - run:
-        name: Build and deploy to S3 bucket
-        command: |
-          if [ $CIRCLE_BRANCH = 'master' ]; then
-            deployer/bin/deploy.sh production
-          fi
+        name: Yarn Install
+        command: yarn install
+    - save_cache:
+        name: Sabe Yarn Package Cache
+        key: yarn-packages-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.cache/yarn
+    - run:
+        name: Build Nuxt
+        command: yarn generate
+    - run:
+        name: Deploy To S3 Bucket
+        command: aws s3 sync dist s3://kakurenbo-lp --delete
+    - run:
+        name: Clear Cache From CloudFornt
+        command: aws cloudfront create-invalidation --distribution-id $AWS_CF_DISTRIBUTION_ID --paths '/*'
 
 executors:
   build:
