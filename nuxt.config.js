@@ -88,6 +88,9 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-100430187-8'
+    }]
   ],
   /*
   ** Nuxt.js modules
@@ -98,6 +101,7 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/toast',
     '@nuxtjs/markdownit',
+    '@nuxtjs/sitemap',
     ['vue-scrollto/nuxt', { duration: 500, offset: -50 }],
     '@/modules/paging.js'
   ],
@@ -140,5 +144,10 @@ export default {
       })))
       return urls
     }
+  },
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://toyokawa-yuta.com',
+    gzip: true
   }
 }
