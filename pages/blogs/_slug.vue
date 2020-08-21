@@ -77,9 +77,9 @@ export default {
   },
   head() {
     const { title, description, eyecatch } = this.blogPost.fields;
-    const pageTitle = `${title} | 豊川 雄太 Official Blog`;
+    const pageTitle = `${title} | かくれんぼ in ぐんま Official Blog`;
     const imageUrl = `https:${eyecatch.fields.file.url}`;
-    const pageUrl = `https://toyokawa-yuta.com/${this.$route.path}`;
+    const pageUrl = `https://gunma.kakurenbo.club/${this.$route.path}`;
     return {
       title: pageTitle,
       meta: [

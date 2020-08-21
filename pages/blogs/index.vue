@@ -72,7 +72,14 @@ export default {
   },
   head() {
     return {
-      title: "豊川 雄太 Official Blog",
+      title: "かくれんぼ in ぐんま Official Blog",
+      meta: [
+        {
+          name: "description",
+          content:
+            "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式ブログ。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。",
+        },
+      ],
     };
   },
 };

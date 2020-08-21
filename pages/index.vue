@@ -146,6 +146,18 @@ export default {
       event,
     };
   },
+  head() {
+    return {
+      title: "かくれんぼ in ぐんま Official Site",
+      meta: [
+        {
+          name: "description",
+          content:
+            "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。",
+        },
+      ],
+    };
+  },
   mounted() {
     this.$store.subscribe((mutation, state) => {
       if (mutation.type === "scroll" || mutation.type === "resize") {
