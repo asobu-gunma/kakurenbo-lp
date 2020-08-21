@@ -43,10 +43,17 @@ export default {
     ]
   },
   env: {
+    firebaseApiKey: process.env.FIREBASE_API_KEY,
+    firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    firebaseDatabaseURL: process.env.FIREBASE_DATABASE_URL,
+    firebaseProjectId: process.env.FIREBASE_PROJECT_ID,
+    firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    firebaseMessageingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
     ctfSpaceId: process.env.CTF_SPACE_ID,
     ctfCdaAccessToken: process.env.CTF_CDA_ACCESS_TOKEN,
     pageLimit,
   },
+  loading: '@/components/modules/Loading.vue',
   /*
   ** Global CSS
   */
@@ -62,6 +69,7 @@ export default {
     { src: '~/plugins/burgerButton.js', ssr: false },
     { src: '~/plugins/contentful.js' },
     { src: '~/plugins/dateFormat.js' },
+    { src: '~/plugins/firebaseFunctions.js' },
     { src: '~/plugins/lazyLoad.js' },
   ],
   /*
@@ -81,6 +89,7 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
+    '@nuxtjs/toast',
     '@nuxtjs/markdownit',
     ['vue-scrollto/nuxt', { duration: 500, offset: -50 }],
     '@/modules/paging.js'
@@ -90,6 +99,15 @@ export default {
       '@/assets/sass/constants.sass',
       '@/assets/sass/plugins.sass'
     ]
+  },
+  toast: {
+    position: 'bottom-center',
+    action: {
+      text: '閉じる',
+      onClick(_e, toastObject) {
+        toastObject.goAway(0)
+      }
+    }
   },
   markdownit: {
     injected: true
