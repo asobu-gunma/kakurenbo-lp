@@ -69,9 +69,9 @@ export default {
     flex-wrap: wrap
     .member-item
       @include media-breakpoint-up(sm)
-        margin: 0 15px 15px
+        margin: 0 20px 20px
       @include media-breakpoint-down(xs)
-        margin: 0 10px 10px
+        margin: 0 20px 20px
       .photo
         background-size: cover
         background-position: center center
