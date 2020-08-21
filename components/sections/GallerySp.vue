@@ -109,11 +109,4 @@ export default {
 @media screen and (max-width: 480px)
   .gallery
     display: block !important
-    .photo-area
-      .hooper
-        height: 280px
-        .hooper-track
-          .hooper-slide
-            .photo
-              height: 280px
 </style>
