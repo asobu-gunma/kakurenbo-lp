@@ -23,6 +23,16 @@
           .col-lg-9.col-sm-8.col-7
             .name {{ memberProfile.fields.name }}
             .title {{ memberProfile.fields.title }}
+            .external
+              .facebook(v-if="memberProfile.fields.facebook")
+                a(:href="memberProfile.fields.facebook", target="new")
+                  .fab.fa-facebook
+              .twitter(v-if="memberProfile.fields.twitter")
+                a(:href="memberProfile.fields.twitter", target="new")
+                  .fab.fa-twitter
+              .website(v-if="memberProfile.fields.website")
+                a(:href="memberProfile.fields.website", target="new")
+                  .fas.fa-globe
       .profile-bottom
         .introduction(v-html="parseText(memberProfile.fields.introduction)")
 </template>
@@ -135,10 +145,18 @@ export default {
           font-size: 18px
       .title
         color: $secondary-grey
+        margin-bottom: 10px
         @include media-breakpoint-up(sm)
           font-size: 14px
         @include media-breakpoint-down(xs)
           font-size: 12px
+      .external
+        display: flex
+        font-size: 20px
+        div
+          margin-right: 5px
+          a
+            color: white
     .profile-bottom
       @include media-breakpoint-down(xs)
         font-size: 12px
