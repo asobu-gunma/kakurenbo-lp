@@ -83,7 +83,7 @@ export default {
     return {
       title: pageTitle,
       meta: [
-        { name: "description", content: this.blogPost.fields.description },
+        { name: "description", content: description },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: imageUrl },
         { name: "twitter:title", content: pageTitle },

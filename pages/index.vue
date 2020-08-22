@@ -147,14 +147,24 @@ export default {
     };
   },
   head() {
+    const pageTitle = "かくれんぼ in ぐんま Official Site";
+    const description =
+      "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。";
+    const imageUrl = "https://kakurenbo.club/ogp.jpg";
+    const pageUrl = "https://kakurenbo.club";
     return {
-      title: "かくれんぼ in ぐんま Official Site",
+      title: pageTitle,
       meta: [
-        {
-          name: "description",
-          content:
-            "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。",
-        },
+        { name: "description", content: description },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: imageUrl },
+        { name: "twitter:title", content: pageTitle },
+        { name: "twitter:description", content: description },
+        { property: "og:title", content: pageTitle },
+        { property: "og:type", content: "article" },
+        { property: "og:image", content: imageUrl },
+        { property: "og:description", content: description },
+        { property: "og:url", content: pageUrl },
       ],
     };
   },
