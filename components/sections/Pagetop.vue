@@ -61,6 +61,7 @@ export default {
     left: 50%
     transform: translateX(-50%)
     color: white
+    font-family: $ja-accent-family
     text-align: center
     width: 100%
     margin: auto
