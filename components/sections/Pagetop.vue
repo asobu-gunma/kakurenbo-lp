@@ -3,7 +3,7 @@
   #pageTop.page-top(v-lazy:background-image="topImage")
     .logo
       img(v-lazy="logo")
-    .subtitle 笑顔で帰ろう！(めちゃめちゃ適当)
+    .subtitle 隠した童心、解き放て。
   g-header
 </template>
 
