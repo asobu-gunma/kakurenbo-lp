@@ -17,7 +17,7 @@
 
 <script>
 import datetimeParserMixin from "@/components/mixins/datetimeParserMixin";
-import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 
 export default {
   mixins: [datetimeParserMixin],
