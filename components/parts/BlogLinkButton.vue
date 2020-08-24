@@ -4,8 +4,20 @@
     n-link.blog-link(to="/blogs")
       span.mr-2 Go to
       strong Kakurenbo's Blog
-      i.fas.fa-angle-double-right.ml-2
+      fa.ml-2(:icon="faAngleDoubleRight")
 </template>
+
+<script>
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+
+export default {
+  data() {
+    return {
+      faAngleDoubleRight,
+    };
+  },
+};
+</script>
 
 <style lang="sass" scoped>
 .blog-link

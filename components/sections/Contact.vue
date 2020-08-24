@@ -32,14 +32,17 @@
             )
           .button-area
             button#submitButton.btn.btn-default.btn-submit(type="submit")
-              i.fas.fa-check.mr-2
+              fa.mr-2(:icon="faCheck")
               | SUBMIT
 </template>
 
 <script>
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
 export default {
   data() {
     return {
+      faCheck,
       contactForm: {
         name: "",
         email: "",

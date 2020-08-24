@@ -44,7 +44,6 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'mask-icon', href: 'safari-pinned-tab.svg', color: '#5bbad5' },
-      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Montserrat:400,700%7cOpen+Sans:100,200,300,400,700' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Sawarabi+Mincho' }
     ]
@@ -67,6 +66,7 @@ export default {
   css: [
     'ress',
     'github-markdown-css',
+    '@fortawesome/fontawesome-svg-core/styles.css',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -102,6 +102,7 @@ export default {
     '@nuxtjs/sitemap',
     ['vue-scrollto/nuxt', { duration: 500, offset: -50 }],
     'nuxt-compress',
+    'nuxt-fontawesome',
     '@/modules/paging.js'
   ],
   styleResources: {
@@ -148,5 +149,8 @@ export default {
     path: '/sitemap.xml',
     hostname: 'https://toyokawa-yuta.com',
     gzip: true
-  }
+  },
+  fontawesome: {
+    component: 'fa'
+  },
 }

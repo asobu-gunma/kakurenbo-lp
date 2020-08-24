@@ -9,7 +9,7 @@
           )
           h1.title {{ blogPost.fields.title }}
           .created-at
-            i.far.fa-calendar-alt.mr-2
+            fa.mr-2(:icon="faCalendarAlt")
             span {{ parseCreatedAt(blogPost.sys.createdAt) }}
         .blog-post-body
           .markdown-body(v-html="$md.render(blogPost.fields.body)")
@@ -17,9 +17,15 @@
 
 <script>
 import datetimeParserMixin from "@/components/mixins/datetimeParserMixin";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default {
   mixins: [datetimeParserMixin],
+  data() {
+    return {
+      faCalendarAlt,
+    };
+  },
   props: {
     blogPost: {
       type: Object,

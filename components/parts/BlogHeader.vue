@@ -2,10 +2,22 @@
 header.navbar.navbar-expand-lg.header-nav
   nav.container
     n-link.navbar-brand(to="/")
-      i.fas.fa-angle-double-left.mr-2
+      fa.mr-2(:icon="faAngleDoubleLeft")
       span.mr-2 Back to
       strong Kakurenbo's Site
 </template>
+
+<script>
+import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
+
+export default {
+  data() {
+    return {
+      faAngleDoubleLeft,
+    };
+  },
+};
+</script>
 
 <style lang="sass" scoped>
 .header-nav

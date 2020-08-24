@@ -26,18 +26,21 @@
             .external
               .facebook(v-if="memberProfile.fields.facebook")
                 a(:href="memberProfile.fields.facebook", target="new")
-                  .fab.fa-facebook
+                  fa(:icon="faFacebook")
               .twitter(v-if="memberProfile.fields.twitter")
                 a(:href="memberProfile.fields.twitter", target="new")
-                  .fab.fa-twitter
+                  fa(:icon="faTwitter")
               .website(v-if="memberProfile.fields.website")
                 a(:href="memberProfile.fields.website", target="new")
-                  .fas.fa-globe
+                  fa(:icon="faGlobe")
       .profile-bottom
         .introduction(v-html="parseText(memberProfile.fields.introduction)")
 </template>
 
 <script>
+import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+
 export default {
   props: {
     memberList: {
@@ -47,6 +50,9 @@ export default {
   },
   data() {
     return {
+      faFacebook,
+      faTwitter,
+      faGlobe,
       memberProfile: {},
     };
   },
@@ -154,7 +160,7 @@ export default {
         display: flex
         font-size: 20px
         div
-          margin-right: 5px
+          margin-right: 15px
           a
             color: white
     .profile-bottom

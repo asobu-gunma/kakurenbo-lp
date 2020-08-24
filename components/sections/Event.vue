@@ -10,7 +10,7 @@
         .event-description(v-html="parseDescription(event.fields.description)")
         .event-date
           .label
-            i.fa.fa-calendar-alt.mr-2
+            fa.mr-2(:icon="faCalendarAlt")
             span 開催日時
           .item
             span.value {{ eventDateArray[0] }}
@@ -23,13 +23,13 @@
             span.unit 開始
         .event-location
           .label
-            i.fa.fa-map-marker-alt.mr-2
+            fa.mr-2(:icon="faMapMarkerAlt")
             span 開催場所
           .item
             .value {{ event.fields.location }}
         .event-fee
           .label
-            i.fa.fa-yen-sign.mr-2
+            fa.mr-2(:icon="faYenSign")
             span 参加費
           .item
             span.value {{ event.fields.fee.toLocaleString() }}
@@ -43,8 +43,21 @@
 <script>
 import datetimeParserMixin from "@/components/mixins/datetimeParserMixin";
 import descriptionParserMixin from "@/components/mixins/descriptionParserMixin";
+import {
+  faCalendarAlt,
+  faMapMarkerAlt,
+  faYenSign,
+} from "@fortawesome/free-solid-svg-icons";
+
 export default {
   mixins: [datetimeParserMixin, descriptionParserMixin],
+  data() {
+    return {
+      faCalendarAlt,
+      faMapMarkerAlt,
+      faYenSign,
+    };
+  },
   props: {
     event: {
       type: Object,

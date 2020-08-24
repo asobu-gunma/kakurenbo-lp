@@ -11,16 +11,22 @@
         .header
           n-link.title(:to="`/blogs/${post.fields.slug}`") {{ post.fields.title }}
           .created-at
-            i.far.fa-calendar-alt.mr-2
+            fa.mr-2(:icon="faCalendarAlt")
             span {{ parseCreatedAt(post.sys.createdAt) }}
         .body(v-html="parseDescription(post.fields.description)")
 </template>
 
 <script>
 import datetimeParserMixin from "@/components/mixins/datetimeParserMixin";
+import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 
 export default {
   mixins: [datetimeParserMixin],
+  data() {
+    return {
+      faCalendarAlt,
+    };
+  },
   props: {
     blogPosts: {
       type: Array,

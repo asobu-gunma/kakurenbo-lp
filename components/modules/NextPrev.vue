@@ -1,41 +1,51 @@
 <template lang="pug">
-  .paging.container
-    .row
-      .offset-sm-1.col-sm-10
-        .row
-          .col-6
-            client-only
-              .next-post(v-if="nextPost")
-                n-link(:to="`/blogs/${nextPost.fields.slug}`")
-                  .post-image(v-lazy:background-image="nextPost.fields.eyecatch.fields.file.url")
-                  .post-title {{ nextPost.fields.title }}
-                  .post-created-at
-                    i.far.fa-calendar-alt.mr-2
-                    span {{ parseCreatedAt(nextPost.sys.createdAt) }}
-          .col-6
-            client-only
-              .prev-post(v-if="prevPost")
-                n-link(:to="`/blogs/${prevPost.fields.slug}`")
-                  .post-image(v-lazy:background-image="prevPost.fields.eyecatch.fields.file.url")
-                  .post-title {{ prevPost.fields.title }}
-                  .post-created-at
-                    i.far.fa-calendar-alt.mr-2
-                    span {{ parseCreatedAt(prevPost.sys.createdAt) }}
+.paging.container
+  .row
+    .offset-sm-1.col-sm-10
+      .row
+        .col-6
+          client-only
+            .next-post(v-if="nextPost")
+              n-link(:to="`/blogs/${nextPost.fields.slug}`")
+                .post-image(
+                  v-lazy:background-image="nextPost.fields.eyecatch.fields.file.url"
+                )
+                .post-title {{ nextPost.fields.title }}
+                .post-created-at
+                  fa.mr-2(:icon="faCalendarAlt")
+                  span {{ parseCreatedAt(nextPost.sys.createdAt) }}
+        .col-6
+          client-only
+            .prev-post(v-if="prevPost")
+              n-link(:to="`/blogs/${prevPost.fields.slug}`")
+                .post-image(
+                  v-lazy:background-image="prevPost.fields.eyecatch.fields.file.url"
+                )
+                .post-title {{ prevPost.fields.title }}
+                .post-created-at
+                  fa.mr-2(:icon="faCalendarAlt")
+                  span {{ parseCreatedAt(prevPost.sys.createdAt) }}
 </template>
 
 <script>
 import datetimeParserMixin from "@/components/mixins/datetimeParserMixin";
+import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 
 export default {
   mixins: [datetimeParserMixin],
+  data() {
+    return {
+      faCalendarAlt,
+    };
+  },
   props: {
     nextPost: {
-      type: Object
+      type: Object,
     },
     prevPost: {
-      type: Object
-    }
-  }
+      type: Object,
+    },
+  },
 };
 </script>
 
