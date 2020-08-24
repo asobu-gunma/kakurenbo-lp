@@ -101,6 +101,7 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
     ['vue-scrollto/nuxt', { duration: 500, offset: -50 }],
+    'nuxt-compress',
     '@/modules/paging.js'
   ],
   styleResources: {
