@@ -34,6 +34,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { name: 'keywords', content: 'かくれんぼ,群馬,かくれんぼ in ぐんま,グンマ' },
       { property: 'fb:app_id', content: '328198145005843' },
       { name: 'msapplication-TileColor', content: '#00aba9' },
       { name: 'theme-color', content: '#1f2233' },
