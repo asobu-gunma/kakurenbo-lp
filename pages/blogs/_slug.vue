@@ -60,6 +60,7 @@ export default {
       limit: 1,
     });
     const prevPost = prevRes.items[0];
+    console.log(prevPost);
 
     const nextRes = await app.$ctfClient.getEntries({
       content_type: "blog",
@@ -79,7 +80,7 @@ export default {
     const { title, description, eyecatch } = this.blogPost.fields;
     const pageTitle = `${title} | かくれんぼ in ぐんま Official Blog`;
     const imageUrl = `https:${eyecatch.fields.file.url}`;
-    const pageUrl = `https://gunma.kakurenbo.club/${this.$route.path}`;
+    const pageUrl = `https://kakurenbo.club/${this.$route.path}`;
     return {
       title: pageTitle,
       meta: [
