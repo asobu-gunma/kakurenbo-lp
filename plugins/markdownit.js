@@ -7,7 +7,7 @@ export default ({ app }, inject) => {
     linkify: true,
     typography: true,
     injected: true,
-  })
+  }).use(require('markdown-it-video'))
 
   const defaultRender = md.renderer.rules.link_open || function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options)
