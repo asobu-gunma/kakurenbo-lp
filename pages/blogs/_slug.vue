@@ -60,7 +60,6 @@ export default {
       limit: 1,
     });
     const prevPost = prevRes.items[0];
-    console.log(prevPost);
 
     const nextRes = await app.$ctfClient.getEntries({
       content_type: "blog",
