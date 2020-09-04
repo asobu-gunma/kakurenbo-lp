@@ -4,27 +4,25 @@
     .offset-sm-1.col-sm-10
       .row
         .col-6
-          client-only
-            .next-post(v-if="nextPost")
-              n-link(:to="`/blogs/${nextPost.fields.slug}`")
-                .post-image(
-                  v-lazy:background-image="nextPost.fields.eyecatch.fields.file.url"
-                )
-                .post-title {{ nextPost.fields.title }}
-                .post-created-at
-                  fa.mr-2(:icon="faCalendarAlt")
-                  span {{ parseCreatedAt(nextPost.sys.createdAt) }}
+          .next-post(v-if="nextPost")
+            n-link(:to="`/blogs/${nextPost.fields.slug}`")
+              .post-image(
+                v-lazy:background-image="nextPost.fields.eyecatch.fields.file.url"
+              )
+              .post-title {{ nextPost.fields.title }}
+              .post-created-at
+                fa.mr-2(:icon="faCalendarAlt")
+                span {{ parseCreatedAt(nextPost.sys.createdAt) }}
         .col-6
-          client-only
-            .prev-post(v-if="prevPost")
-              n-link(:to="`/blogs/${prevPost.fields.slug}`")
-                .post-image(
-                  v-lazy:background-image="prevPost.fields.eyecatch.fields.file.url"
-                )
-                .post-title {{ prevPost.fields.title }}
-                .post-created-at
-                  fa.mr-2(:icon="faCalendarAlt")
-                  span {{ parseCreatedAt(prevPost.sys.createdAt) }}
+          .prev-post(v-if="prevPost")
+            n-link(:to="`/blogs/${prevPost.fields.slug}`")
+              .post-image(
+                v-lazy:background-image="prevPost.fields.eyecatch.fields.file.url"
+              )
+              .post-title {{ prevPost.fields.title }}
+              .post-created-at
+                fa.mr-2(:icon="faCalendarAlt")
+                span {{ parseCreatedAt(prevPost.sys.createdAt) }}
 </template>
 
 <script>
