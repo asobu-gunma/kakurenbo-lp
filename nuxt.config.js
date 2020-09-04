@@ -79,6 +79,7 @@ export default {
     { src: '~/plugins/dateFormat.js' },
     { src: '~/plugins/firebaseFunctions.js' },
     { src: '~/plugins/lazyLoad.js' },
+    { src: '~/plugins/markdownit.js' },
   ],
   /*
   ** Auto import components
@@ -120,9 +121,6 @@ export default {
         toastObject.goAway(0)
       }
     }
-  },
-  markdownit: {
-    injected: true
   },
   /*
   ** Build configuration
