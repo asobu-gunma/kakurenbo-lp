@@ -146,7 +146,7 @@ export default {
   },
   sitemap: {
     path: '/sitemap.xml',
-    hostname: 'https://toyokawa-yuta.com',
+    hostname: 'https://kakurenbo.club',
     gzip: true
   },
   fontawesome: {
