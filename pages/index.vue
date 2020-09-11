@@ -1,5 +1,6 @@
 <template lang="pug">
 #wrapper
+  event-button(:event="event")
   section.section
     s-pagetop
   section.section
@@ -67,6 +68,7 @@
 
 <script>
 import GFooter from "@/components/global/Footer";
+import PEventButton from "@/components/parts/eventButton";
 import PSectionHeader from "@/components/parts/SectionHeader";
 import PBlogLinkButton from "@/components/parts/BlogLinkButton";
 import SPagetop from "@/components/sections/Pagetop";
@@ -90,6 +92,7 @@ import contactLogo from "@/assets/images/contact.svg";
 export default {
   components: {
     GFooter,
+    PEventButton,
     PSectionHeader,
     PBlogLinkButton,
     SPagetop,
