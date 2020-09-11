@@ -80,6 +80,7 @@ export default {
     { src: '~/plugins/firebaseFunctions.js' },
     { src: '~/plugins/lazyLoad.js' },
     { src: '~/plugins/markdownit.js' },
+    { src: '~/plugins/youtube.js' },
   ],
   /*
   ** Auto import components
