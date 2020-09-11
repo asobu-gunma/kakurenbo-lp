@@ -1,6 +1,7 @@
 
 <template lang="pug">
 n-link.event-button(
+  v-if="event",
   v-lazy:background-image="event.fields.buttonImage.fields.file.url",
   v-scroll-to="'#event'",
   to

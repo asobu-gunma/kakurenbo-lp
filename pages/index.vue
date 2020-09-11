@@ -68,7 +68,7 @@
 
 <script>
 import GFooter from "@/components/global/Footer";
-import PEventButton from "@/components/parts/eventButton";
+import PEventButton from "@/components/parts/EventButton";
 import PSectionHeader from "@/components/parts/SectionHeader";
 import PBlogLinkButton from "@/components/parts/BlogLinkButton";
 import SPagetop from "@/components/sections/Pagetop";
