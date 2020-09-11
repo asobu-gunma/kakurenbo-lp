@@ -31,25 +31,34 @@ export default {
 
 <style lang="sass" scoped>
 .event-button
-  width: 150px
-  height: 150px
   background-size: cover
   background-position: center center
   border: 5px $accent-color solid
   border-radius: 50%
   position: fixed
-  bottom: 40px
-  right: 60px
   overflow: hidden
   z-index: 100
+  @include media-breakpoint-up(sm)
+    width: 150px
+    height: 150px
+    bottom: 40px
+    right: 60px
+  @include media-breakpoint-down(xs)
+    display: none
+    width: 80px
+    height: 80px
+    bottom: 30px
+    right: 30px
   .event-detail
-    color: white
-    font-size: 11px
-    font-weight: bold
-    text-align: center
-    width: 100%
-    background-color: rgba(0, 0, 0, 0.7)
-    padding: 7px 20px 15px
-    position: absolute
-    bottom: 0
+    @include media-breakpoint-up(sm)
+      color: white
+      font-size: 11px
+      font-weight: bold
+      text-align: center
+      width: 100%
+      background-color: rgba(0, 0, 0, 0.7)
+      padding: 7px 20px 15px
+      position: absolute
+      bottom: 0
+    @include media-breakpoint-down(xs)
 </style>
