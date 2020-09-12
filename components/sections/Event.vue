@@ -60,7 +60,7 @@
                   .time {{ schedule.time }}
                   .content {{ schedule.content }}
     .row
-      .offset-lg-1
+      .offset-lg-1.col-lg-11.col-sm-12
         .event-submit
           a.submit-button(:href="event.fields.eventUrl", target="new") 申込みに進む
   .container(v-else)
