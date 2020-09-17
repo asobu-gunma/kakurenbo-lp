@@ -103,6 +103,7 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
     ['vue-scrollto/nuxt', { duration: 500, offset: -50 }],
     'nuxt-compress',
     'nuxt-fontawesome',
@@ -149,6 +150,13 @@ export default {
     path: '/sitemap.xml',
     hostname: 'https://kakurenbo.club',
     gzip: true
+  },
+  robots: {
+    UserAgent: '*',
+    // クローリングしないパスを記述
+    Disallow: '/_nuxt',
+    // sitemap.xmlのURLを記述
+    Sitemap: 'https://example.com/sitemap.xml',
   },
   fontawesome: {
     component: 'fa'
