@@ -45,13 +45,16 @@ export default {
     };
   },
   async asyncData({ app, params, payload }) {
-    if (payload) return { blogPost: payload };
-
-    const blogRes = await app.$ctfClient.getEntries({
-      content_type: "blog",
-      "fields.slug": params.slug,
-    });
-    const blogPost = blogRes.items[0];
+    let blogPost;
+    if (payload) {
+      blogPost = payload;
+    } else {
+      const blogRes = await app.$ctfClient.getEntries({
+        content_type: "blog",
+        "fields.slug": params.slug,
+      });
+      blogPost = blogRes.items[0];
+    }
 
     const prevRes = await app.$ctfClient.getEntries({
       content_type: "blog",
