@@ -156,7 +156,7 @@ export default {
     // クローリングしないパスを記述
     Disallow: '/_nuxt',
     // sitemap.xmlのURLを記述
-    Sitemap: 'https://example.com/sitemap.xml',
+    Sitemap: 'https://kakurenbo.club/sitemap.xml',
   },
   fontawesome: {
     component: 'fa'
