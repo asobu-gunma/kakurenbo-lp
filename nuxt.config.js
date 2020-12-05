@@ -1,5 +1,9 @@
 const domain = "kakurenbo.club"
 const projectName = "かくれんぼ in ぐんま"
+const description =
+  "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。";
+const imageUrl = `https://${domain}/ogp.jpg`;
+const pageUrl = `https://${domain}`;
 const pageLimit = 10
 
 const fetchBlogRes = async () => {
@@ -31,15 +35,24 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: `${projectName} Official Site`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'description', name: 'description', content: description },
       { name: 'keywords', content: 'かくれんぼ,群馬,かくれんぼ in ぐんま,グンマ' },
       { property: 'fb:app_id', content: '328198145005843' },
       { name: 'msapplication-TileColor', content: '#00aba9' },
       { name: 'theme-color', content: '#1f2233' },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: imageUrl },
+      { name: "twitter:title", content: pageTitle },
+      { name: "twitter:description", content: description },
+      { property: "og:title", content: pageTitle },
+      { property: "og:type", content: "article" },
+      { property: "og:image", content: imageUrl },
+      { property: "og:description", content: description },
+      { property: "og:url", content: pageUrl },
     ],
     link: [
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },

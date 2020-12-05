@@ -149,28 +149,6 @@ export default {
       event,
     };
   },
-  head() {
-    const pageTitle = `${process.env.projectName} Official Site`;
-    const description =
-      "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。";
-    const imageUrl = `https://${process.env.domain}/ogp.jpg`;
-    const pageUrl = `https://${process.env.domain}`;
-    return {
-      title: pageTitle,
-      meta: [
-        { name: "description", content: description },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:image", content: imageUrl },
-        { name: "twitter:title", content: pageTitle },
-        { name: "twitter:description", content: description },
-        { property: "og:title", content: pageTitle },
-        { property: "og:type", content: "article" },
-        { property: "og:image", content: imageUrl },
-        { property: "og:description", content: description },
-        { property: "og:url", content: pageUrl },
-      ],
-    };
-  },
   mounted() {
     this.$store.subscribe((mutation, state) => {
       if (mutation.type === "scroll" || mutation.type === "resize") {
