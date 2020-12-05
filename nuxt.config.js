@@ -1,5 +1,6 @@
 const domain = "kakurenbo.club"
 const projectName = "かくれんぼ in ぐんま"
+const pageTitle = `${projectName} Offical Site`
 const description =
   "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。";
 const imageUrl = `https://${domain}/ogp.jpg`;
@@ -35,7 +36,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: `${projectName} Official Site`,
+    title: pageTitle,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
