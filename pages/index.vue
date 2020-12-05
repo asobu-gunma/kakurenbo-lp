@@ -149,6 +149,24 @@ export default {
       event,
     };
   },
+  head() {
+    const { domain } = process.env;
+    const imageUrl = `https://${domain}/ogp.jpg`;
+    const pageUrl = `https://${domain}`;
+    return {
+      meta: [
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: imageUrl },
+        { name: "twitter:title", content: process.env.pageTitle },
+        { name: "twitter:description", content: process.env.description },
+        { property: "og:title", content: process.env.pageTitle },
+        { property: "og:type", content: "article" },
+        { property: "og:image", content: imageUrl },
+        { property: "og:description", content: process.env.description },
+        { property: "og:url", content: pageUrl },
+      ],
+    };
+  },
   mounted() {
     this.$store.subscribe((mutation, state) => {
       if (mutation.type === "scroll" || mutation.type === "resize") {

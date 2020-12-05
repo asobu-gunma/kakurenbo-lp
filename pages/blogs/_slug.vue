@@ -78,23 +78,30 @@ export default {
       nextPost,
     };
   },
+  computed: {
+    description() {
+      return `${this.blogPost.fields.body
+        .substr(0, 170)
+        .replace(/\n/g, "<br>")}...`;
+    },
+  },
   head() {
-    const { title, description, eyecatch } = this.blogPost.fields;
+    const { title, eyecatch } = this.blogPost.fields;
     const pageTitle = `${title} | ${process.env.projectName} Official Blog`;
     const imageUrl = `https:${eyecatch.fields.file.url}`;
     const pageUrl = `https://${process.env.domain}/${this.$route.path}`;
     return {
       title: pageTitle,
       meta: [
-        { name: "description", content: description },
+        { name: "description", hid: "description", content: this.description },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: imageUrl },
         { name: "twitter:title", content: pageTitle },
-        { name: "twitter:description", content: description },
+        { name: "twitter:description", content: this.description },
         { property: "og:title", content: pageTitle },
         { property: "og:type", content: "article" },
         { property: "og:image", content: imageUrl },
-        { property: "og:description", content: description },
+        { property: "og:description", content: this.description },
         { property: "og:url", content: pageUrl },
       ],
     };

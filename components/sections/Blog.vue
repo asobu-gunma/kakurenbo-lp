@@ -13,7 +13,7 @@
           .created-at
             fa.mr-2(:icon="faCalendarAlt")
             span {{ parseCreatedAt(post.sys.createdAt) }}
-        .body(v-html="parseDescription(post.fields.description)")
+        .body(v-html="parseDescription(post.fields.body)")
 </template>
 
 <script>
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     parseDescription(text) {
-      return text.replace(/\n/g, "<br>");
+      return `${text.substr(0, 170).replace(/\n/g, "<br>")}...`;
     },
   },
 };

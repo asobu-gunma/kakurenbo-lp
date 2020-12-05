@@ -3,8 +3,6 @@ const projectName = "かくれんぼ in ぐんま"
 const pageTitle = `${projectName} Offical Site`
 const description =
   "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。";
-const imageUrl = `https://${domain}/ogp.jpg`;
-const pageUrl = `https://${domain}`;
 const pageLimit = 10
 
 const fetchBlogRes = async () => {
@@ -45,15 +43,6 @@ export default {
       { property: 'fb:app_id', content: '328198145005843' },
       { name: 'msapplication-TileColor', content: '#00aba9' },
       { name: 'theme-color', content: '#1f2233' },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: imageUrl },
-      { name: "twitter:title", content: pageTitle },
-      { name: "twitter:description", content: description },
-      { property: "og:title", content: pageTitle },
-      { property: "og:type", content: "article" },
-      { property: "og:image", content: imageUrl },
-      { property: "og:description", content: description },
-      { property: "og:url", content: pageUrl },
     ],
     link: [
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
@@ -76,6 +65,8 @@ export default {
     ctfCdaAccessToken: process.env.CTF_CDA_ACCESS_TOKEN,
     domain,
     projectName,
+    pageTitle,
+    description,
     pageLimit,
   },
   loading: '@/components/modules/Loading.vue',

@@ -76,6 +76,7 @@ export default {
       meta: [
         {
           name: "description",
+          hid: "description",
           content:
             "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式ブログ。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。",
         },
