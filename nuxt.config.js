@@ -1,3 +1,4 @@
+const domain = "kakurenbo.club"
 const pageLimit = 10
 
 const fetchBlogRes = async () => {
@@ -58,6 +59,7 @@ export default {
     firebaseMessageingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
     ctfSpaceId: process.env.CTF_SPACE_ID,
     ctfCdaAccessToken: process.env.CTF_CDA_ACCESS_TOKEN,
+    domain,
     pageLimit,
   },
   loading: '@/components/modules/Loading.vue',
@@ -148,7 +150,7 @@ export default {
   },
   sitemap: {
     path: '/sitemap.xml',
-    hostname: 'https://kakurenbo.club',
+    hostname: `https://${domain}`,
     gzip: true
   },
   robots: {
@@ -156,7 +158,7 @@ export default {
     // クローリングしないパスを記述
     Disallow: '/_nuxt',
     // sitemap.xmlのURLを記述
-    Sitemap: 'https://kakurenbo.club/sitemap.xml',
+    Sitemap: `https://${domain}/sitemap.xml`,
   },
   fontawesome: {
     component: 'fa'

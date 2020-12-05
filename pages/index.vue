@@ -153,8 +153,8 @@ export default {
     const pageTitle = "かくれんぼ in ぐんま Official Site";
     const description =
       "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。";
-    const imageUrl = "https://kakurenbo.club/ogp.jpg";
-    const pageUrl = "https://kakurenbo.club";
+    const imageUrl = `https://${process.env.domain}/ogp.jpg`;
+    const pageUrl = `https://${process.env.domain}`;
     return {
       title: pageTitle,
       meta: [

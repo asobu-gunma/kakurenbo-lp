@@ -82,7 +82,7 @@ export default {
     const { title, description, eyecatch } = this.blogPost.fields;
     const pageTitle = `${title} | かくれんぼ in ぐんま Official Blog`;
     const imageUrl = `https:${eyecatch.fields.file.url}`;
-    const pageUrl = `https://kakurenbo.club/${this.$route.path}`;
+    const pageUrl = `https://${process.env.domain}/${this.$route.path}`;
     return {
       title: pageTitle,
       meta: [
