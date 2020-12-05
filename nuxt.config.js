@@ -1,4 +1,5 @@
 const domain = "kakurenbo.club"
+const projectName = "かくれんぼ in ぐんま"
 const pageLimit = 10
 
 const fetchBlogRes = async () => {
@@ -60,6 +61,7 @@ export default {
     ctfSpaceId: process.env.CTF_SPACE_ID,
     ctfCdaAccessToken: process.env.CTF_CDA_ACCESS_TOKEN,
     domain,
+    projectName,
     pageLimit,
   },
   loading: '@/components/modules/Loading.vue',
