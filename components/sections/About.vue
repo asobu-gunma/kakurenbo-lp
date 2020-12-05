@@ -33,4 +33,6 @@
     .content
       text-align: left
       padding: 0 25px
+      p
+        display: inline
 </style>
