@@ -78,7 +78,6 @@ form.entry-form
                 :name="`user_cognition`",
                 :id="`user_cognition_${index}`",
                 :value="cognition",
-                required,
                 v-model="entryForm.cognition"
               )
               label.form-check-label(:for="`user_cognition_${index}`") {{ cognition }}
@@ -90,7 +89,11 @@ form.entry-form
             rows="5",
             v-model="entryForm.note"
           )
-        input.btn.btn-lg.btn-kakurenbo(type="submit", value="参加を申し込む")
+        input.btn.btn-lg.btn-kakurenbo(
+          type="submit",
+          value="参加を申し込む",
+          @click="sendMail"
+        )
 </template>
 
 <script>
@@ -133,6 +136,72 @@ export default {
     },
     removeUser(index) {
       this.entryForm.userList.splice(index, 1);
+    },
+    async sendMail(e) {
+      e.preventDefault();
+      const { userList, email, cognition, note } = this.entryForm;
+      const users = userList.map((user, index) => {
+        return `# 参加者${index + 1}
+名前: ${user.name}
+性別: ${user.gender}
+年代: ${user.age}`;
+      });
+      this.$nuxt.$loading.start();
+      const mailOption = {
+        from: `${process.env.projectName} エントリーフォーム <entry@${process.env.domain}>`,
+        to: [process.env.mailTo],
+        subject: `【${process.env.projectName}】参加申し込みがありました`,
+        text: `
+ 以下の内容でイベントへの参加申し込みがありました。
+
+---
+${users.join("\n\n")}
+
+# 代表メールアドレス
+${email}
+
+# 参加のキッカケ
+${cognition.join(", ")}
+
+# 質問・要望
+${note}
+---
+`,
+      };
+      try {
+        await this.$mgClient.messages.create(
+          `mg.${process.env.domain}`,
+          mailOption
+        );
+        this.$toast.success(
+          "参加申し込みを受け付けました。ありがとうございました。",
+          { duration: 5000 }
+        );
+        this.resetForm();
+      } catch (err) {
+        this.$toast.error(
+          "参加申し込みに失敗しました。時間をおいて再度お試しください。",
+          { duration: 5000 }
+        );
+        console.log(err);
+        throw err;
+      } finally {
+        this.$nuxt.$loading.finish();
+      }
+    },
+    resetForm() {
+      this.entryForm = {
+        userList: [
+          {
+            name: "",
+            gender: "",
+            age: "",
+          },
+        ],
+        email: "",
+        cognition: [],
+        note: "",
+      };
     },
   },
 };
