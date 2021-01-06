@@ -2,11 +2,11 @@
 form.entry-form
   .container
     .row
-      .offset-lg-3.offset-md-2.col-lg-6.col-md-8
+      .offset-lg-2.col-lg-8
         .user-list(v-for="(user, index) in entryForm.userList", :key="index")
           .form-group
             label.legend(:for="`user_${index}_name`") お名前
-            input.form-control(
+            input.form-control.form-control-lg(
               type="text",
               placeholder="かくれんぼ 太郎",
               :name="`user_${index}_name`",
@@ -17,8 +17,8 @@ form.entry-form
           .form-group
             label.legend 性別
             .d-flex
-              .custom-control.custom-radio.mr-3
-                input.custom-control-input(
+              .form-check.mr-3
+                input.form-check-input(
                   type="radio",
                   :name="`user_${index}_gender_male`",
                   :id="`user_${index}_gender_male`",
@@ -26,9 +26,9 @@ form.entry-form
                   required,
                   v-model="user.gender"
                 )
-                label.custom-control-label(:for="`user_${index}_gender_male`") 男性
-              .custom-control.custom-radio
-                input.custom-control-input(
+                label.form-check-label(:for="`user_${index}_gender_male`") 男性
+              .form-check
+                input.form-check-input(
                   type="radio",
                   :name="`user_${index}_gender_female`",
                   :id="`user_${index}_gender_female`",
@@ -36,12 +36,10 @@ form.entry-form
                   required,
                   v-model="user.gender"
                 )
-                label.custom-control-label(
-                  :for="`user_${index}_gender_female`"
-                ) 女性
+                label.form-check-label(:for="`user_${index}_gender_female`") 女性
           .form-group
             label.legend(:for="`user_${index}_age`") 年代
-            select.custom-select(
+            select.form-control.form-control-lg(
               :name="`user_${index}_age`",
               :id="`user_${index}_age`",
               v-model="user.age"
@@ -55,8 +53,8 @@ form.entry-form
               option(value="50代") 50代
               option(value="60代以上") 60代以上
         .form-group
-          label.legend(:for="`user_email`") メールアドレス
-          input.form-control(
+          label.legend(:for="`user_email`") 代表者メールアドレス
+          input.form-control.form-control-lg(
             type="email",
             placeholder="taro@kakurenbo.club",
             :name="`user_email`",
@@ -70,8 +68,8 @@ form.entry-form
             v-for="(cognition, index) in cognitionList",
             :key="index"
           )
-            .custom-control.custom-checkbox
-              input.custom-control-input(
+            .form-check.mb-2
+              input.form-check-input(
                 type="checkbox",
                 :name="`user_cognition_${index}`",
                 :id="`user_cognition_${index}`",
@@ -79,15 +77,16 @@ form.entry-form
                 required,
                 v-model="entryForm.cognition"
               )
-              label.custom-control-label(:for="`user_cognition_${index}`") {{ cognition }}
+              label.form-check-label(:for="`user_cognition_${index}`") {{ cognition }}
         .form-group
           label.legend(:for="`user_note`") 質問・要望
-          textarea.form-control(
+          textarea.form-control.form-control-lg(
             :name="`user_note`",
             :id="`user_note`",
+            rows="5",
             v-model="entryForm.note"
           )
-        input.btn.btn-kakurenbo(type="submit", value="送信する")
+        input.btn.btn-lg.btn-kakurenbo(type="submit", value="参加を申し込む")
 </template>
 
 <script>
@@ -98,7 +97,7 @@ export default {
         userList: [
           {
             name: "",
-            gender: "男性",
+            gender: "",
             age: "",
           },
         ],
@@ -130,9 +129,4 @@ export default {
   margin-bottom: 20px
   .legend
     font-weight: bold
-  input, textarea
-    font-size: 16px
-    padding: 20px 10px
-  select
-    font-size: 16px
 </style>
