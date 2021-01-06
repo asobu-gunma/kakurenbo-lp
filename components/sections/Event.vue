@@ -61,10 +61,11 @@
                 .tl-item
                   .time {{ schedule.time }}
                   .content {{ schedule.content }}
-    .row
+    .row.mt-4
       .offset-lg-1.col-lg-11.col-sm-12
-        .event-submit
-          a.submit-button(:href="event.fields.eventUrl", target="new") 申込みに進む
+        n-link.entry-link(to="/entries")
+          strong かくれんぼ選手権への参加申込はコチラ
+          fa.ml-2(:icon="faAngleDoubleRight")
   .container(v-else)
     .preparing 準備中です。しばしお待ち下さい。
 </template> 
@@ -77,6 +78,7 @@ import {
   faMapMarkerAlt,
   faYenSign,
   faStopwatch,
+  faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default {
@@ -87,6 +89,7 @@ export default {
       faMapMarkerAlt,
       faYenSign,
       faStopwatch,
+      faAngleDoubleRight,
     };
   },
   props: {
@@ -173,22 +176,21 @@ export default {
             position: relative
             top: 5px
             float: left
-  .event-submit
-    margin-top: 20px
-    .submit-button
-      display: inline-block
-      color: $primary-grey
-      font-size: 24px
-      font-weight: bold
-      background-color: $accent-color
-      padding: 12px 30px
-      border: 3px solid $accent-color
-      border-radius: 5px
-      cursor: pointer
-      transition: 0.3s
-      &:hover
-        opacity: 0.7
-        text-decoration: none
+  .entry-link
+    color: black
+    font-family: $en-accent-family
+    padding: 15px 20px
+    border: 2px solid black
+    &:hover
+      color: white
+      text-decoration: none
+      background-color: black
+    @include media-breakpoint-down(sm)
+      .entry-link
+        font-size: 18px
+    @include media-breakpoint-down(xs)
+      .entry-link
+        font-size: 14px
   .preparing
     text-align: center
     font-size: 20px
