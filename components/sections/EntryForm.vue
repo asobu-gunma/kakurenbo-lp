@@ -52,6 +52,15 @@ form.entry-form
               option(value="40代") 40代
               option(value="50代") 50代
               option(value="60代以上") 60代以上
+          .form-group(v-show="user.age === '10代'")
+            .form-check
+              input.form-check-input(
+                type="checkbox",
+                :name="`user_${index}_is_kids`",
+                :id="`user_${index}_is_kids`",
+                v-model="user.isKids"
+              )
+              label.form-check-label(:for="`user_${index}_is_kids`") 中学生以下ですか？
           .remove-user-button(v-if="index > 0")
             fa.text-danger(:icon="faTimes", @click="removeUser(index)")
         .form-group.text-right
@@ -109,6 +118,7 @@ export default {
             name: "",
             gender: "",
             age: "",
+            isKids: false,
           },
         ],
         email: "",
@@ -132,6 +142,7 @@ export default {
         name: "",
         gender: "",
         age: "",
+        isKids: false,
       });
     },
     removeUser(index) {
@@ -144,7 +155,7 @@ export default {
         return `# 参加者${index + 1}
 名前: ${user.name}
 性別: ${user.gender}
-年代: ${user.age}`;
+年代: ${user.age}${user.isKids ? "（中学生以下）" : ""}`;
       });
       this.$nuxt.$loading.start();
       const mailOption = {
@@ -196,6 +207,7 @@ ${note}
             name: "",
             gender: "",
             age: "",
+            isKids: false,
           },
         ],
         email: "",
