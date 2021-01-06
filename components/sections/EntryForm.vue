@@ -20,7 +20,7 @@ form.entry-form
               .form-check.mr-3
                 input.form-check-input(
                   type="radio",
-                  :name="`user_${index}_gender_male`",
+                  :name="`user_${index}_gender`",
                   :id="`user_${index}_gender_male`",
                   value="男性",
                   required,
@@ -30,7 +30,7 @@ form.entry-form
               .form-check
                 input.form-check-input(
                   type="radio",
-                  :name="`user_${index}_gender_female`",
+                  :name="`user_${index}_gender`",
                   :id="`user_${index}_gender_female`",
                   value="女性",
                   required,
@@ -52,6 +52,10 @@ form.entry-form
               option(value="40代") 40代
               option(value="50代") 50代
               option(value="60代以上") 60代以上
+          .remove-user-button(v-if="index > 0")
+            fa.text-danger(:icon="faTimes", @click="removeUser(index)")
+        .form-group.text-right
+          button.btn.btn-lg.btn-success(@click="addUser") 参加者を追加する
         .form-group
           label.legend(:for="`user_email`") 代表者メールアドレス
           input.form-control.form-control-lg(
@@ -71,7 +75,7 @@ form.entry-form
             .form-check.mb-2
               input.form-check-input(
                 type="checkbox",
-                :name="`user_cognition_${index}`",
+                :name="`user_cognition`",
                 :id="`user_cognition_${index}`",
                 :value="cognition",
                 required,
@@ -90,9 +94,12 @@ form.entry-form
 </template>
 
 <script>
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
 export default {
   data() {
     return {
+      faTimes,
       entryForm: {
         userList: [
           {
@@ -116,10 +123,33 @@ export default {
       ],
     };
   },
+  methods: {
+    addUser() {
+      this.entryForm.userList.push({
+        name: "",
+        gender: "",
+        age: "",
+      });
+    },
+    removeUser(index) {
+      this.entryForm.userList.splice(index, 1);
+    },
+  },
 };
 </script>
 
 <style lang="sass" scoped>
+.user-list
+  padding: 30px 30px 15px
+  border: 1px solid $muted-color
+  border-radius: 10px
+  margin-bottom: 20px
+  position: relative
+  .remove-user-button
+    position: absolute
+    top: 20px
+    right: 20px
+    cursor: pointer
 .btn-kakurenbo
   color: $primary-grey
   background-color: $accent-color
