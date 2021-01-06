@@ -7,7 +7,7 @@ export default {
       return this.$dateFormat(datetime, "yyyy.MM.dd");
     },
     parseDatetimeArray(datetime) {
-      return this.$dateFormat(datetime, "yyyy,M,d,EEEEE,h:mm").split(",");
+      return this.$dateFormat(datetime, "yyyy,M,d,EEEEE,H:mm").split(",");
     },
   }
 }
