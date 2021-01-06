@@ -36,6 +36,8 @@
             span 開催場所
           .item
             .value {{ event.fields.location }}
+          .item(v-if="event.fields.address")
+            .unit {{ event.fields.address }}
         .event-fee
           .label
             fa.mr-2(:icon="faYenSign")
