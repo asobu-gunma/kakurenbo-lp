@@ -4,23 +4,20 @@ form.entry-form
     .row
       .offset-lg-3.offset-md-2.col-lg-6.col-md-8
         .user-list(v-for="(user, index) in entryForm.userList", :key="index")
-          .form-group.row
-            .col-sm-3.mt-2
-              label(:for="`user_${index}_name`") お名前
-            .col-sm-9
-              input.form-control(
-                type="text",
-                placeholder="かくれんぼ 太郎",
-                :name="`user_${index}_name`",
-                :id="`user_${index}_name`",
-                required,
-                v-model="user.name"
-              )
-          .form-group.row
-            .col-sm-3
-              label 性別
-            .col-sm-9
-              .custom-control.custom-radio.custom-control-inline
+          .form-group
+            label.legend(:for="`user_${index}_name`") お名前
+            input.form-control(
+              type="text",
+              placeholder="かくれんぼ 太郎",
+              :name="`user_${index}_name`",
+              :id="`user_${index}_name`",
+              required,
+              v-model="user.name"
+            )
+          .form-group
+            label.legend 性別
+            .d-flex
+              .custom-control.custom-radio.mr-3
                 input.custom-control-input(
                   type="radio",
                   :name="`user_${index}_gender_male`",
@@ -30,7 +27,7 @@ form.entry-form
                   v-model="user.gender"
                 )
                 label.custom-control-label(:for="`user_${index}_gender_male`") 男性
-              .custom-control.custom-radio.custom-control-inline
+              .custom-control.custom-radio
                 input.custom-control-input(
                   type="radio",
                   :name="`user_${index}_gender_female`",
@@ -42,50 +39,55 @@ form.entry-form
                 label.custom-control-label(
                   :for="`user_${index}_gender_female`"
                 ) 女性
-          .form-group.row
-            .col-sm-3.mt-2
-              label(:for="`user_${index}_age`") 年代
-            .col-sm-9
-              select.custom-select(
-                :name="`user_${index}_age`",
-                :id="`user_${index}_age`",
-                v-model="user.age"
+          .form-group
+            label.legend(:for="`user_${index}_age`") 年代
+            select.custom-select(
+              :name="`user_${index}_age`",
+              :id="`user_${index}_age`",
+              v-model="user.age"
+            )
+              option(value="") 年代を選択してください
+              option(value="10歳未満") 10歳未満
+              option(value="10代") 10代
+              option(value="20代") 20代
+              option(value="30代") 30代
+              option(value="40代") 40代
+              option(value="50代") 50代
+              option(value="60代以上") 60代以上
+        .form-group
+          label.legend(:for="`user_email`") メールアドレス
+          input.form-control(
+            type="email",
+            placeholder="taro@kakurenbo.club",
+            :name="`user_email`",
+            :id="`user_email`",
+            required,
+            v-model="entryForm.email"
+          )
+        .form-group
+          label.legend 参加のキッカケ
+          .cognition-list(
+            v-for="(cognition, index) in cognitionList",
+            :key="index"
+          )
+            .custom-control.custom-checkbox
+              input.custom-control-input(
+                type="checkbox",
+                :name="`user_cognition_${index}`",
+                :id="`user_cognition_${index}`",
+                :value="cognition",
+                required,
+                v-model="entryForm.cognition"
               )
-                option(value="") 年代を選択してください
-                option(value="10歳未満") 10歳未満
-                option(value="10代") 10代
-                option(value="20代") 20代
-                option(value="30代") 30代
-                option(value="40代") 40代
-                option(value="50代") 50代
-                option(value="60代以上") 60代以上
-        .form-group.row
-          .col-sm-3
-            label 参加のキッカケ
-          .col-sm-9
-            .cognition-list(
-              v-for="(cognition, index) in cognitionList",
-              :key="index"
-            )
-              .custom-control.custom-checkbox
-                input.custom-control-input(
-                  type="checkbox",
-                  :name="`user_cognition_${index}`",
-                  :id="`user_cognition_${index}`",
-                  :value="cognition",
-                  required,
-                  v-model="entryForm.cognition"
-                )
-                label.custom-control-label(:for="`user_cognition_${index}`") {{ cognition }}
-        .form-group.row
-          .col-sm-3.mt-2
-            label(:for="`user_note`") 質問・要望
-          .col-sm-9
-            textarea.form-control(
-              :name="`user_note`",
-              :id="`user_note`",
-              v-model="entryForm.note"
-            )
+              label.custom-control-label(:for="`user_cognition_${index}`") {{ cognition }}
+        .form-group
+          label.legend(:for="`user_note`") 質問・要望
+          textarea.form-control(
+            :name="`user_note`",
+            :id="`user_note`",
+            v-model="entryForm.note"
+          )
+        input.btn.btn-kakurenbo(type="submit", value="送信する")
 </template>
 
 <script>
@@ -100,6 +102,7 @@ export default {
             age: "",
           },
         ],
+        email: "",
         cognition: [],
         note: "",
       },
@@ -118,4 +121,18 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.btn-kakurenbo
+  color: $primary-grey
+  background-color: $accent-color
+  font-weight: bold
+.form-group
+  font-size: 16px
+  margin-bottom: 20px
+  .legend
+    font-weight: bold
+  input, textarea
+    font-size: 16px
+    padding: 20px 10px
+  select
+    font-size: 16px
 </style>
