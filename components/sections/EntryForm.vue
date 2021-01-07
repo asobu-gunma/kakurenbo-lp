@@ -1,143 +1,146 @@
 <template lang="pug">
-form.entry-form
-  .container
-    .row
-      .offset-lg-2.col-lg-8
-        .user-list(v-for="(user, index) in entryForm.userList", :key="index")
-          .form-group
-            validation-provider(
-              v-slot="{ errors }",
-              rules="required",
-              name="お名前"
-            )
-              label.legend(:for="`user_${index}_name`") お名前
-              input.form-control.form-control-lg(
-                type="text",
-                placeholder="かくれんぼ 太郎",
-                :name="`user_${index}_name`",
-                :id="`user_${index}_name`",
-                :class="{ 'is-invalid': errors[0] }",
-                v-model="user.name"
+validation-observer(v-slot="{ handleSubmit, invalid }")
+  form.entry-form(@submit.prevent="handleSubmit(sendMail)")
+    .container
+      .row
+        .offset-lg-2.col-lg-8
+          .user-list(v-for="(user, index) in entryForm.userList", :key="index")
+            .form-group
+              validation-provider(
+                v-slot="{ errors }",
+                rules="required",
+                name="お名前"
               )
-              .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
-          .form-group
-            validation-provider(
-              v-slot="{ errors }",
-              rules="required",
-              name="性別"
-            )
-              label.legend 性別
-              .d-flex
-                .form-check.mr-3
-                  input.form-check-input(
-                    type="radio",
-                    :name="`user_${index}_gender`",
-                    :id="`user_${index}_gender_male`",
-                    :class="{ 'is-invalid': errors[0] }",
-                    value="男性",
-                    required,
-                    v-model="user.gender"
-                  )
-                  label.form-check-label(:for="`user_${index}_gender_male`") 男性
-                .form-check
-                  input.form-check-input(
-                    type="radio",
-                    :name="`user_${index}_gender`",
-                    :id="`user_${index}_gender_female`",
-                    :class="{ 'is-invalid': errors[0] }",
-                    value="女性",
-                    required,
-                    v-model="user.gender"
-                  )
-                  label.form-check-label(:for="`user_${index}_gender_female`") 女性
-              .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
-          .form-group
-            validation-provider(
-              v-slot="{ errors }",
-              rules="required",
-              name="年代"
-            )
-              label.legend(:for="`user_${index}_age`") 年代
-              select.form-control.form-control-lg(
-                :name="`user_${index}_age`",
-                :id="`user_${index}_age`",
-                :class="{ 'is-invalid': errors[0] }",
-                v-model="user.age"
+                label.legend(:for="`user_${index}_name`") お名前
+                input.form-control.form-control-lg(
+                  type="text",
+                  placeholder="かくれんぼ 太郎",
+                  :name="`user_${index}_name`",
+                  :id="`user_${index}_name`",
+                  :class="{ 'is-invalid': errors[0] }",
+                  v-model="user.name"
+                )
+                .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+            .form-group
+              validation-provider(
+                v-slot="{ errors }",
+                rules="required",
+                name="性別"
               )
-                option(value="") 年代を選択してください
-                option(value="10歳未満") 10歳未満
-                option(value="10代") 10代
-                option(value="20代") 20代
-                option(value="30代") 30代
-                option(value="40代") 40代
-                option(value="50代") 50代
-                option(value="60代以上") 60代以上
-              .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
-          .form-group(v-show="user.age === '10代'")
-            .form-check
-              input.form-check-input(
-                type="checkbox",
-                :name="`user_${index}_is_kids`",
-                :id="`user_${index}_is_kids`",
-                v-model="user.isKids"
+                label.legend 性別
+                .d-flex
+                  .form-check.mr-3
+                    input.form-check-input(
+                      type="radio",
+                      :name="`user_${index}_gender`",
+                      :id="`user_${index}_gender_male`",
+                      :class="{ 'is-invalid': errors[0] }",
+                      value="男性",
+                      required,
+                      v-model="user.gender"
+                    )
+                    label.form-check-label(:for="`user_${index}_gender_male`") 男性
+                  .form-check
+                    input.form-check-input(
+                      type="radio",
+                      :name="`user_${index}_gender`",
+                      :id="`user_${index}_gender_female`",
+                      :class="{ 'is-invalid': errors[0] }",
+                      value="女性",
+                      required,
+                      v-model="user.gender"
+                    )
+                    label.form-check-label(
+                      :for="`user_${index}_gender_female`"
+                    ) 女性
+                .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+            .form-group
+              validation-provider(
+                v-slot="{ errors }",
+                rules="required",
+                name="年代"
               )
-              label.form-check-label(:for="`user_${index}_is_kids`") 中学生以下ですか？
-          .remove-user-button(v-if="index > 0")
-            fa.text-danger(:icon="faTimes", @click="removeUser(index)")
-        .form-group.text-right
-          button.btn.btn-lg.btn-success(@click="addUser") 参加者を追加する
-        .form-group
-          validation-provider(
-            v-slot="{ errors }",
-            rules="required|email",
-            name="代表メールアドレス"
-          )
-            label.legend(:for="`user_email`") 代表者メールアドレス
-            input.form-control.form-control-lg(
-              type="email",
-              placeholder="taro@kakurenbo.club",
-              :name="`user_email`",
-              :id="`user_email`",
-              :class="{ 'is-invalid': errors[0] }",
-              required,
-              v-model="entryForm.email"
-            )
-            .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
-        .form-group
-          validation-provider(
-            v-slot="{ errors }",
-            rules="required",
-            name="参加のキッカケ"
-          )
-            label.legend 参加のキッカケ
-            .cognition-list(
-              v-for="(cognition, index) in cognitionList",
-              :key="index"
-            )
-              .form-check.mb-2
+                label.legend(:for="`user_${index}_age`") 年代
+                select.form-control.form-control-lg(
+                  :name="`user_${index}_age`",
+                  :id="`user_${index}_age`",
+                  :class="{ 'is-invalid': errors[0] }",
+                  v-model="user.age"
+                )
+                  option(value="") 年代を選択してください
+                  option(value="10歳未満") 10歳未満
+                  option(value="10代") 10代
+                  option(value="20代") 20代
+                  option(value="30代") 30代
+                  option(value="40代") 40代
+                  option(value="50代") 50代
+                  option(value="60代以上") 60代以上
+                .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+            .form-group(v-show="user.age === '10代'")
+              .form-check
                 input.form-check-input(
                   type="checkbox",
-                  :name="`user_cognition`",
-                  :id="`user_cognition_${index}`",
-                  :value="cognition",
-                  :class="{ 'is-invalid': errors[0] }",
-                  v-model="entryForm.cognition"
+                  :name="`user_${index}_is_kids`",
+                  :id="`user_${index}_is_kids`",
+                  v-model="user.isKids"
                 )
-                label.form-check-label(:for="`user_cognition_${index}`") {{ cognition }}
-            .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
-        .form-group
-          label.legend(:for="`user_note`") 質問・要望
-          textarea.form-control.form-control-lg(
-            :name="`user_note`",
-            :id="`user_note`",
-            rows="5",
-            v-model="entryForm.note"
+                label.form-check-label(:for="`user_${index}_is_kids`") 中学生以下ですか？
+            .remove-user-button(v-if="index > 0")
+              fa.text-danger(:icon="faTimes", @click="removeUser(index)")
+          .form-group.text-right
+            button.btn.btn-lg.btn-success(@click="addUser") 参加者を追加する
+          .form-group
+            validation-provider(
+              v-slot="{ errors }",
+              rules="required|email",
+              name="代表メールアドレス"
+            )
+              label.legend(:for="`user_email`") 代表者メールアドレス
+              input.form-control.form-control-lg(
+                type="email",
+                placeholder="taro@kakurenbo.club",
+                :name="`user_email`",
+                :id="`user_email`",
+                :class="{ 'is-invalid': errors[0] }",
+                required,
+                v-model="entryForm.email"
+              )
+              .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+          .form-group
+            validation-provider(
+              v-slot="{ errors }",
+              rules="required",
+              name="参加のキッカケ"
+            )
+              label.legend 参加のキッカケ
+              .cognition-list(
+                v-for="(cognition, index) in cognitionList",
+                :key="index"
+              )
+                .form-check.mb-2
+                  input.form-check-input(
+                    type="checkbox",
+                    :name="`user_cognition`",
+                    :id="`user_cognition_${index}`",
+                    :value="cognition",
+                    :class="{ 'is-invalid': errors[0] }",
+                    v-model="entryForm.cognition"
+                  )
+                  label.form-check-label(:for="`user_cognition_${index}`") {{ cognition }}
+              .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+          .form-group
+            label.legend(:for="`user_note`") 質問・要望
+            textarea.form-control.form-control-lg(
+              :name="`user_note`",
+              :id="`user_note`",
+              rows="5",
+              v-model="entryForm.note"
+            )
+          input.btn.btn-lg.btn-kakurenbo(
+            type="submit",
+            value="参加を申し込む",
+            :disabled="invalid"
           )
-        input.btn.btn-lg.btn-kakurenbo(
-          type="submit",
-          value="参加を申し込む",
-          @click="sendMail"
-        )
 </template>
 
 <script>
@@ -183,8 +186,7 @@ export default {
     removeUser(index) {
       this.entryForm.userList.splice(index, 1);
     },
-    async sendMail(e) {
-      e.preventDefault();
+    async sendMail() {
       const { userList, email, cognition, note } = this.entryForm;
       const users = userList.map((user, index) => {
         return `# 参加者${index + 1}
