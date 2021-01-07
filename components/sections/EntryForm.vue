@@ -197,10 +197,12 @@ export default {
       this.$nuxt.$loading.start();
       const mailOption = {
         from: `${process.env.projectName} エントリーフォーム <entry@${process.env.domain}>`,
-        to: [process.env.mailTo],
-        subject: `【${process.env.projectName}】参加申し込みがありました`,
+        to: [email],
+        bcc: [process.env.mailTo],
+        subject: `【${process.env.projectName}】参加申し込みを受け付けました`,
         text: `
- 以下の内容でイベントへの参加申し込みがありました。
+以下の内容でイベントへの参加申し込みを受け付けました。
+追って当日の詳細をご連絡致します！
 
 ---
 ${users.join("\n\n")}
@@ -214,6 +216,21 @@ ${cognition.join(", ")}
 # 質問・要望
 ${note}
 ---
+
+引き続き${process.env.projectName}をよろしくおねがいします！
+
+※ コチラのメールへの返信は受け付けておりません。
+不明な点はホームページのお問合せフォームよりご連絡ください。
+
+====================================
+
+# かくれんぼ in ぐんま 公式サイト
+https://www.kakurenbo.club
+
+# かくれんぼ in ぐんま Facebookグループ
+https://www.facebook.com/groups/705675266823073
+
+====================================
 `,
       };
       try {
@@ -225,7 +242,7 @@ ${note}
           "参加申し込みを受け付けました。ありがとうございました。",
           { duration: 5000 }
         );
-        this.resetForm();
+        this.$router.push("/");
       } catch (err) {
         this.$toast.error(
           "参加申し込みに失敗しました。時間をおいて再度お試しください。",
@@ -236,21 +253,6 @@ ${note}
       } finally {
         this.$nuxt.$loading.finish();
       }
-    },
-    resetForm() {
-      this.entryForm = {
-        userList: [
-          {
-            name: "",
-            gender: "",
-            age: "",
-            isKids: false,
-          },
-        ],
-        email: "",
-        cognition: [],
-        note: "",
-      };
     },
   },
 };
