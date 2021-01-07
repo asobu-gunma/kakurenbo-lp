@@ -85,6 +85,7 @@ export default {
     { src: '~/plugins/lazyLoad.js' },
     { src: '~/plugins/mailgun.js' },
     { src: '~/plugins/markdownit.js' },
+    { src: '~/plugins/veeValidate.js' },
     { src: '~/plugins/youtube.js' },
   ],
   /*
@@ -135,6 +136,9 @@ export default {
   */
   build: {
     hardSource: true,
+    transpile: [
+      'vee-validate/dist/rules',
+    ]
   },
   generate: {
     async routes() {
