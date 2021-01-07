@@ -1,108 +1,146 @@
 <template lang="pug">
-form.entry-form
-  .container
-    .row
-      .offset-lg-2.col-lg-8
-        .user-list(v-for="(user, index) in entryForm.userList", :key="index")
-          .form-group
-            label.legend(:for="`user_${index}_name`") お名前
-            input.form-control.form-control-lg(
-              type="text",
-              placeholder="かくれんぼ 太郎",
-              :name="`user_${index}_name`",
-              :id="`user_${index}_name`",
-              required,
-              v-model="user.name"
-            )
-          .form-group
-            label.legend 性別
-            .d-flex
-              .form-check.mr-3
-                input.form-check-input(
-                  type="radio",
-                  :name="`user_${index}_gender`",
-                  :id="`user_${index}_gender_male`",
-                  value="男性",
-                  required,
-                  v-model="user.gender"
+validation-observer(v-slot="{ handleSubmit, invalid }")
+  form.entry-form(@submit.prevent="handleSubmit(sendMail)")
+    .container
+      .row
+        .offset-lg-2.col-lg-8
+          .user-list(v-for="(user, index) in entryForm.userList", :key="index")
+            .form-group
+              validation-provider(
+                v-slot="{ errors }",
+                rules="required",
+                name="お名前"
+              )
+                label.legend(:for="`user_${index}_name`") お名前
+                input.form-control.form-control-lg(
+                  type="text",
+                  placeholder="かくれんぼ 太郎",
+                  :name="`user_${index}_name`",
+                  :id="`user_${index}_name`",
+                  :class="{ 'is-invalid': errors[0] }",
+                  v-model="user.name"
                 )
-                label.form-check-label(:for="`user_${index}_gender_male`") 男性
+                .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+            .form-group
+              validation-provider(
+                v-slot="{ errors }",
+                rules="required",
+                name="性別"
+              )
+                label.legend 性別
+                .d-flex
+                  .form-check.mr-3
+                    input.form-check-input(
+                      type="radio",
+                      :name="`user_${index}_gender`",
+                      :id="`user_${index}_gender_male`",
+                      :class="{ 'is-invalid': errors[0] }",
+                      value="男性",
+                      required,
+                      v-model="user.gender"
+                    )
+                    label.form-check-label(:for="`user_${index}_gender_male`") 男性
+                  .form-check
+                    input.form-check-input(
+                      type="radio",
+                      :name="`user_${index}_gender`",
+                      :id="`user_${index}_gender_female`",
+                      :class="{ 'is-invalid': errors[0] }",
+                      value="女性",
+                      required,
+                      v-model="user.gender"
+                    )
+                    label.form-check-label(
+                      :for="`user_${index}_gender_female`"
+                    ) 女性
+                .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+            .form-group
+              validation-provider(
+                v-slot="{ errors }",
+                rules="required",
+                name="年代"
+              )
+                label.legend(:for="`user_${index}_age`") 年代
+                select.form-control.form-control-lg(
+                  :name="`user_${index}_age`",
+                  :id="`user_${index}_age`",
+                  :class="{ 'is-invalid': errors[0] }",
+                  v-model="user.age"
+                )
+                  option(value="") 年代を選択してください
+                  option(value="10歳未満") 10歳未満
+                  option(value="10代") 10代
+                  option(value="20代") 20代
+                  option(value="30代") 30代
+                  option(value="40代") 40代
+                  option(value="50代") 50代
+                  option(value="60代以上") 60代以上
+                .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+            .form-group(v-show="user.age === '10代'")
               .form-check
                 input.form-check-input(
-                  type="radio",
-                  :name="`user_${index}_gender`",
-                  :id="`user_${index}_gender_female`",
-                  value="女性",
-                  required,
-                  v-model="user.gender"
+                  type="checkbox",
+                  :name="`user_${index}_is_kids`",
+                  :id="`user_${index}_is_kids`",
+                  v-model="user.isKids"
                 )
-                label.form-check-label(:for="`user_${index}_gender_female`") 女性
+                label.form-check-label(:for="`user_${index}_is_kids`") 中学生以下ですか？
+            .remove-user-button(v-if="index > 0")
+              fa.text-danger(:icon="faTimes", @click="removeUser(index)")
+          .form-group.text-right
+            button.btn.btn-lg.btn-success(@click="addUser") 参加者を追加する
           .form-group
-            label.legend(:for="`user_${index}_age`") 年代
-            select.form-control.form-control-lg(
-              :name="`user_${index}_age`",
-              :id="`user_${index}_age`",
-              v-model="user.age"
+            validation-provider(
+              v-slot="{ errors }",
+              rules="required|email",
+              name="代表メールアドレス"
             )
-              option(value="") 年代を選択してください
-              option(value="10歳未満") 10歳未満
-              option(value="10代") 10代
-              option(value="20代") 20代
-              option(value="30代") 30代
-              option(value="40代") 40代
-              option(value="50代") 50代
-              option(value="60代以上") 60代以上
-          .form-group(v-show="user.age === '10代'")
-            .form-check
-              input.form-check-input(
-                type="checkbox",
-                :name="`user_${index}_is_kids`",
-                :id="`user_${index}_is_kids`",
-                v-model="user.isKids"
+              label.legend(:for="`user_email`") 代表者メールアドレス
+              input.form-control.form-control-lg(
+                type="email",
+                placeholder="taro@kakurenbo.club",
+                :name="`user_email`",
+                :id="`user_email`",
+                :class="{ 'is-invalid': errors[0] }",
+                required,
+                v-model="entryForm.email"
               )
-              label.form-check-label(:for="`user_${index}_is_kids`") 中学生以下ですか？
-          .remove-user-button(v-if="index > 0")
-            fa.text-danger(:icon="faTimes", @click="removeUser(index)")
-        .form-group.text-right
-          button.btn.btn-lg.btn-success(@click="addUser") 参加者を追加する
-        .form-group
-          label.legend(:for="`user_email`") 代表者メールアドレス
-          input.form-control.form-control-lg(
-            type="email",
-            placeholder="taro@kakurenbo.club",
-            :name="`user_email`",
-            :id="`user_email`",
-            required,
-            v-model="entryForm.email"
-          )
-        .form-group
-          label.legend 参加のキッカケ
-          .cognition-list(
-            v-for="(cognition, index) in cognitionList",
-            :key="index"
-          )
-            .form-check.mb-2
-              input.form-check-input(
-                type="checkbox",
-                :name="`user_cognition`",
-                :id="`user_cognition_${index}`",
-                :value="cognition",
-                v-model="entryForm.cognition"
+              .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+          .form-group
+            validation-provider(
+              v-slot="{ errors }",
+              rules="required",
+              name="参加のキッカケ"
+            )
+              label.legend 参加のキッカケ
+              .cognition-list(
+                v-for="(cognition, index) in cognitionList",
+                :key="index"
               )
-              label.form-check-label(:for="`user_cognition_${index}`") {{ cognition }}
-        .form-group
-          label.legend(:for="`user_note`") 質問・要望
-          textarea.form-control.form-control-lg(
-            :name="`user_note`",
-            :id="`user_note`",
-            rows="5",
-            v-model="entryForm.note"
+                .form-check.mb-2
+                  input.form-check-input(
+                    type="checkbox",
+                    :name="`user_cognition`",
+                    :id="`user_cognition_${index}`",
+                    :value="cognition",
+                    :class="{ 'is-invalid': errors[0] }",
+                    v-model="entryForm.cognition"
+                  )
+                  label.form-check-label(:for="`user_cognition_${index}`") {{ cognition }}
+              .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+          .form-group
+            label.legend(:for="`user_note`") 質問・要望
+            textarea.form-control.form-control-lg(
+              :name="`user_note`",
+              :id="`user_note`",
+              rows="5",
+              v-model="entryForm.note"
+            )
+          input.btn.btn-lg.btn-kakurenbo(
+            type="submit",
+            value="参加を申し込む",
+            :disabled="invalid"
           )
-        input.btn.btn-lg.btn-kakurenbo(
-          type="submit",
-          value="参加を申し込む",
-          @click="sendMail"
-        )
 </template>
 
 <script>
@@ -148,8 +186,7 @@ export default {
     removeUser(index) {
       this.entryForm.userList.splice(index, 1);
     },
-    async sendMail(e) {
-      e.preventDefault();
+    async sendMail() {
       const { userList, email, cognition, note } = this.entryForm;
       const users = userList.map((user, index) => {
         return `# 参加者${index + 1}
@@ -160,10 +197,12 @@ export default {
       this.$nuxt.$loading.start();
       const mailOption = {
         from: `${process.env.projectName} エントリーフォーム <entry@${process.env.domain}>`,
-        to: [process.env.mailTo],
-        subject: `【${process.env.projectName}】参加申し込みがありました`,
+        to: [email],
+        bcc: [process.env.mailTo],
+        subject: `【${process.env.projectName}】参加申し込みを受け付けました`,
         text: `
- 以下の内容でイベントへの参加申し込みがありました。
+以下の内容でイベントへの参加申し込みを受け付けました。
+追って当日の詳細をご連絡致します！
 
 ---
 ${users.join("\n\n")}
@@ -177,6 +216,21 @@ ${cognition.join(", ")}
 # 質問・要望
 ${note}
 ---
+
+引き続き${process.env.projectName}をよろしくおねがいします！
+
+※ コチラのメールへの返信は受け付けておりません。
+不明な点はホームページのお問合せフォームよりご連絡ください。
+
+====================================
+
+# かくれんぼ in ぐんま 公式サイト
+https://www.kakurenbo.club
+
+# かくれんぼ in ぐんま Facebookグループ
+https://www.facebook.com/groups/705675266823073
+
+====================================
 `,
       };
       try {
@@ -188,7 +242,7 @@ ${note}
           "参加申し込みを受け付けました。ありがとうございました。",
           { duration: 5000 }
         );
-        this.resetForm();
+        this.$router.push("/");
       } catch (err) {
         this.$toast.error(
           "参加申し込みに失敗しました。時間をおいて再度お試しください。",
@@ -199,21 +253,6 @@ ${note}
       } finally {
         this.$nuxt.$loading.finish();
       }
-    },
-    resetForm() {
-      this.entryForm = {
-        userList: [
-          {
-            name: "",
-            gender: "",
-            age: "",
-            isKids: false,
-          },
-        ],
-        email: "",
-        cognition: [],
-        note: "",
-      };
     },
   },
 };
