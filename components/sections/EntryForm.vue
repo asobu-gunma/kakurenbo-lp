@@ -11,7 +11,7 @@ validation-observer(v-slot="{ handleSubmit, invalid }")
                 rules="required",
                 name="お名前"
               )
-                label.legend(:for="`user_${index}_name`") お名前
+                label.legend(:for="`user_${index}_name`") {{ index > 0 ? 'お名前' : 'お名前（代表者）' }}
                 input.form-control.form-control-lg(
                   type="text",
                   placeholder="かくれんぼ 太郎",
