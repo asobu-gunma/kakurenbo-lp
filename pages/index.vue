@@ -29,6 +29,14 @@
     s-gallery(:gallery="gallery")
     s-gallery-sp(:gallery="gallery")
   section.section
+    p-section-header#champion(
+      :logo="championLogo",
+      title="歴代優勝者",
+      subtitle="Kakurenbo Champion",
+      description="歴戦の勇者たち"
+    )
+    s-champion
+  section.section
     p-section-header#team(
       :logo="teamLogo",
       title="運営チーム",
@@ -76,6 +84,7 @@ import SAbout from "@/components/sections/About";
 import SConcept from "@/components/sections/Concept";
 import SGallery from "@/components/sections/Gallery";
 import SGallerySp from "@/components/sections/GallerySp";
+import SChampion from "@/components/sections/Champion";
 import STeam from "@/components/sections/Team";
 import SBlog from "@/components/sections/Blog";
 import SEvent from "@/components/sections/Event";
@@ -84,6 +93,7 @@ import SContact from "@/components/sections/Contact";
 import aboutLogo from "@/assets/images/about.svg";
 import conceptLogo from "@/assets/images/concept.svg";
 import galleryLogo from "@/assets/images/gallery.svg";
+import championLogo from "@/assets/images/champion.svg";
 import teamLogo from "@/assets/images/team.svg";
 import blogLogo from "@/assets/images/blog.svg";
 import eventLogo from "@/assets/images/event.svg";
@@ -100,6 +110,7 @@ export default {
     SConcept,
     SGallery,
     SGallerySp,
+    SChampion,
     STeam,
     SBlog,
     SEvent,
@@ -110,6 +121,7 @@ export default {
       aboutLogo,
       conceptLogo,
       galleryLogo,
+      championLogo,
       teamLogo,
       blogLogo,
       eventLogo,
