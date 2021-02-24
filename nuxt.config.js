@@ -110,6 +110,7 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
+    '@nuxtjs/google-gtag',
     ['vue-scrollto/nuxt', { duration: 500, offset: -50 }],
     'nuxt-compress',
     'nuxt-fontawesome',
@@ -170,4 +171,7 @@ export default {
   fontawesome: {
     component: 'fa'
   },
+  'google-gtag': {
+    id: 'G-ZKC3660QET'
+  }
 }
