@@ -59,7 +59,7 @@ export default {
         from: `${process.env.projectName} お問い合わせフォーム <info@${process.env.domain}>`,
         to: [email],
         bcc: [process.env.mailTo],
-        subject: `【${process.env.projectName}】お問い合わせがありました`,
+        subject: `【${process.env.projectName}】お問い合わせを受け付けました`,
         text: `
  以下の内容でホームページよりお問い合わせを受け付けました。
  必要に応じて担当から折り返しますので今しばらくお待ち下さい。
