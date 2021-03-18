@@ -57,15 +57,38 @@ export default {
       this.$nuxt.$loading.start();
       const mailOption = {
         from: `${process.env.projectName} お問い合わせフォーム <info@${process.env.domain}>`,
-        to: [process.env.mailTo],
+        to: [email],
+        bcc: [process.env.mailTo],
         subject: `【${process.env.projectName}】お問い合わせがありました`,
         text: `
- 以下の内容でホームページよりお問い合わせがありました。
+ 以下の内容でホームページよりお問い合わせを受け付けました。
+ 必要に応じて担当から折り返しますので今しばらくお待ち下さい。
 
-【お名前】 ${name}
-【連絡先】 ${email}
-【内容】
-${message}`,
+---
+# お名前
+${name} 様
+
+# 連絡先
+${email}
+
+# 内容
+${message}
+---
+
+引き続き${process.env.projectName}をよろしくおねがいします！
+
+※ コチラのメールへの返信は受け付けておりません。
+
+====================================
+
+# かくれんぼ in ぐんま 公式サイト
+https://www.kakurenbo.club
+
+# かくれんぼ in ぐんま Facebookグループ
+https://www.facebook.com/groups/705675266823073
+
+====================================
+`,
       };
       try {
         await this.$mgClient.messages.create(
