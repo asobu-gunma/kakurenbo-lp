@@ -38,6 +38,7 @@
             .value {{ event.fields.location }}
           .item(v-if="event.fields.address")
             .unit {{ event.fields.address }}
+          .excuse ※ 運営の都合により場所が変更になる可能性もございます。
         .event-fee
           .label
             fa.mr-2(:icon="faYenSign")
