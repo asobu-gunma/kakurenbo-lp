@@ -72,7 +72,7 @@ export default {
   },
   head() {
     return {
-      title: `${process.env.projectName} Official Blog`,
+      title: `${process.env.projectName} | 公式ブログ`,
       meta: [
         {
           name: "description",

@@ -87,7 +87,7 @@ export default {
   },
   head() {
     const { title, eyecatch } = this.blogPost.fields;
-    const pageTitle = `${title} | ${process.env.projectName} Official Blog`;
+    const pageTitle = `${title} | ${process.env.projectName} | 公式ブログ`;
     const imageUrl = `https:${eyecatch.fields.file.url}`;
     const pageUrl = `https://${process.env.domain}/${this.$route.path}`;
     return {

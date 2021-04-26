@@ -1,6 +1,6 @@
 const domain = "kakurenbo.club"
 const projectName = "かくれんぼ in ぐんま"
-const pageTitle = `${projectName} Offical Site`
+const pageTitle = `${projectName} | 公式サイト`
 const description =
   "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。";
 const pageLimit = 10
