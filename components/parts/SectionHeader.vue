@@ -2,8 +2,8 @@
 .section-header
   .section-logo
     img(v-lazy="logo")
-  .section-title(:style="`color: ${titleColor};`") {{ title }}
-  .section-subtitle(:style="`color: ${subtitleColor};`") {{ subtitle }}
+  h2.section-title(:style="`color: ${titleColor};`") {{ title }}
+  h3.section-subtitle(:style="`color: ${subtitleColor};`") {{ subtitle }}
   .section-description {{ description }}
 </template>
 
@@ -48,11 +48,13 @@ export default {
   .section-title
     font-family: $ja-accent-family
     letter-spacing: 5px
+    line-height: 1.5
     margin-bottom: 0
   .section-subtitle
     font-family: $en-accent-family
     font-weight: normal
     letter-spacing: 4px
+    line-height: 1.5
     margin-bottom: 30px
   .section-description
     color: $secondary-grey
