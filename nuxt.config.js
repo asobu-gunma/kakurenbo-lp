@@ -147,10 +147,10 @@ export default {
       const totalPages = Math.ceil(blogRes.total / pageLimit);
       const pageRange = [...Array(totalPages).keys()]
       let urls = pageRange.map(pageNum => ({
-        route: `/blogs/page/${pageNum + 1}`
+        route: `/blog/page/${pageNum + 1}`
       }))
       urls = urls.concat(blogRes.items.map(item => ({
-        route: `/blogs/${item.fields.slug}`,
+        route: `/blog/${item.fields.slug}`,
         payload: item
       })))
       return urls

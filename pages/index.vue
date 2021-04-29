@@ -45,7 +45,7 @@
       description="最新のチャレンジや動向をコンテンツとしてお届け"
     )
     s-blog(:blogPosts="blogPosts")
-    p-link-button(path="/blogs", pageName="Blog")
+    p-link-button(path="/blog", pageName="Blog")
   section.section
     p-section-header#event(
       :logo="eventLogo",
