@@ -2,7 +2,10 @@
 <template lang="pug">
 #gallery-tile
   .row.no-gutters
-    .col-sm-4(v-for="(photo, index) in gallery", :key="index")
+    .col-sm-4.px-1.pb-sm-2.pb-1(
+      v-for="(photo, index) in gallery",
+      :key="index"
+    )
       .photo(v-lazy:background-image="photo.fields.file.url")
 </template>
 
@@ -24,5 +27,4 @@ export default {
     padding-top: 60%
     background-size: cover
     background-position: center center
-    margin-bottom: 15px
 </style>
