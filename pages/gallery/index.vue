@@ -1,6 +1,6 @@
 <template lang="pug">
 #wrapper
-  p-blog-header
+  p-page-header
   section.section
     p-section-header(
       :logo="galleryLogo",
@@ -24,7 +24,7 @@
 
 <script>
 import GFooter from "@/components/global/Footer";
-import PBlogHeader from "@/components/parts/BlogHeader";
+import PPageHeader from "@/components/parts/PageHeader";
 import PSectionHeader from "@/components/parts/SectionHeader";
 import SGalleryTile from "@/components/sections/GalleryTile";
 import SContact from "@/components/sections/Contact";
@@ -35,7 +35,7 @@ import contactLogo from "@/assets/images/contact.svg";
 export default {
   components: {
     GFooter,
-    PBlogHeader,
+    PPageHeader,
     PSectionHeader,
     SGalleryTile,
     SContact,

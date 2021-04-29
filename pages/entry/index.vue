@@ -1,7 +1,7 @@
 
 <template lang="pug">
 #wrapper
-  p-blog-header
+  p-page-header
   section.section
     p-section-header(
       :logo="entryLogo",
@@ -17,7 +17,7 @@
 
 <script>
 import GFooter from "@/components/global/Footer";
-import PBlogHeader from "@/components/parts/BlogHeader";
+import PPageHeader from "@/components/parts/PageHeader";
 import PSectionHeader from "@/components/parts/SectionHeader";
 import SEntryForm from "@/components/sections/EntryForm";
 
@@ -26,7 +26,7 @@ import entryLogo from "@/assets/images/entry.svg";
 export default {
   components: {
     GFooter,
-    PBlogHeader,
+    PPageHeader,
     PSectionHeader,
     SEntryForm,
   },

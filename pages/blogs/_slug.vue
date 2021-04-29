@@ -1,6 +1,6 @@
 <template lang="pug">
 #wrapper
-  p-blog-header
+  p-page-header
   section.section
     p-blog-title
     s-blog-post(:blogPost="blogPost")
@@ -20,7 +20,7 @@
 
 <script>
 import GFooter from "@/components/global/Footer";
-import PBlogHeader from "@/components/parts/BlogHeader";
+import PPageHeader from "@/components/parts/PageHeader";
 import PBlogTitle from "@/components/parts/BlogTitle";
 import PSectionHeader from "@/components/parts/SectionHeader";
 import MNextPrev from "@/components/modules/NextPrev";
@@ -32,7 +32,7 @@ import contactLogo from "@/assets/images/contact.svg";
 export default {
   components: {
     GFooter,
-    PBlogHeader,
+    PPageHeader,
     PBlogTitle,
     PSectionHeader,
     MNextPrev,
