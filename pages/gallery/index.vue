@@ -49,7 +49,6 @@ export default {
   async asyncData({ route, app, env }) {
     const galleryRes = await app.$ctfClient.getEntries({
       content_type: "gallery",
-      order: "-sys.createdAt",
     });
     const gallery = galleryRes.items[0].fields.photos;
 

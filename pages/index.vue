@@ -120,10 +120,8 @@ export default {
   async asyncData({ app }) {
     const galleryRes = await app.$ctfClient.getEntries({
       content_type: "gallery",
-      order: "-sys.createdAt",
-      limit: 6,
     });
-    const gallery = galleryRes.items[0].fields.photos;
+    const gallery = galleryRes.items[0].fields.photos.slice(0, 6);
 
     const memberRes = await app.$ctfClient.getEntries({
       content_type: "member",
