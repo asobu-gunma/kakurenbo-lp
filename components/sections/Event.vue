@@ -64,7 +64,7 @@
                   .content {{ schedule.content }}
     .row.mt-4
       .offset-lg-1.col-lg-11.col-sm-12
-        n-link.entry-link(to="/entries")
+        n-link.entry-link(to="/entry")
           strong かくれんぼ選手権への参加申込はコチラ
           fa.ml-2(:icon="faAngleDoubleRight")
   .container(v-else)
