@@ -1,9 +1,9 @@
 <template lang="pug">
-.blog-link-button
+.link-button
   .container
-    n-link.blog-link(to="/blogs")
+    n-link.link(:to="path")
       span.mr-2 Go to
-      strong Kakurenbo's Blog
+      strong Kakurenbo's {{ pageName }}
       fa.ml-2(:icon="faAngleDoubleRight")
 </template>
 
@@ -11,6 +11,16 @@
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
 export default {
+  props: {
+    path: {
+      type: String,
+      required: true,
+    },
+    pageName: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       faAngleDoubleRight,
@@ -20,7 +30,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.blog-link
+.link
   color: black
   font-family: $en-accent-family
   padding: 15px 20px
@@ -30,9 +40,9 @@ export default {
     text-decoration: none
     background-color: black
   @include media-breakpoint-down(sm)
-    .blog-link
+    .link
       font-size: 18px
   @include media-breakpoint-down(xs)
-    .blog-link
+    .link
       font-size: 14px
 </style>

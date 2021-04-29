@@ -28,6 +28,7 @@
     )
     s-gallery(:gallery="gallery")
     s-gallery-sp(:gallery="gallery")
+    p-link-button(path="/gallery", pageName="Gallery")
   section.section
     p-section-header#team(
       :logo="teamLogo",
@@ -44,7 +45,7 @@
       description="最新のチャレンジや動向をコンテンツとしてお届け"
     )
     s-blog(:blogPosts="blogPosts")
-    p-blog-link-button
+    p-link-button(path="/blogs", pageName="Blog")
   section.section
     p-section-header#event(
       :logo="eventLogo",
@@ -70,7 +71,7 @@
 import GFooter from "@/components/global/Footer";
 import PEventButton from "@/components/parts/EventButton";
 import PSectionHeader from "@/components/parts/SectionHeader";
-import PBlogLinkButton from "@/components/parts/BlogLinkButton";
+import PLinkButton from "@/components/parts/LinkButton";
 import SPagetop from "@/components/sections/Pagetop";
 import SAbout from "@/components/sections/About";
 import SConcept from "@/components/sections/Concept";
@@ -94,7 +95,7 @@ export default {
     GFooter,
     PEventButton,
     PSectionHeader,
-    PBlogLinkButton,
+    PLinkButton,
     SPagetop,
     SAbout,
     SConcept,
