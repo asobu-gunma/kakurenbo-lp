@@ -49,10 +49,8 @@ export default {
 };
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 #wrapper
-  .section
-    padding-bottom: 100px
   .preparing
     text-align: center
     font-size: 20px

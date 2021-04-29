@@ -108,11 +108,3 @@ export default {
   },
 };
 </script>
-
-<style lang="sass">
-#wrapper
-  .section
-    padding-bottom: 100px
-  .section-dark
-    background-color: $primary-dark
-</style>

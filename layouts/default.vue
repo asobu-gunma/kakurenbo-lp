@@ -24,4 +24,21 @@ a
   &:hover
     text-decoration: none
     opacity: 0.7
+
+#wrapper
+  .section
+    padding-bottom: 100px
+  .section-dark
+    background-color: $primary-dark
+
+*[lazy=loaded]
+  animation-duration: 0.5s
+  animation-fill-mode: both
+  animation-name: scrollIn
+
+@keyframes scrollIn
+  from
+    opacity: 0
+  to
+    opacity: 1
 </style>
