@@ -15,78 +15,18 @@ header.navbar.navbar-expand-lg.header-nav(
         )
     .collapse-menu.mx-auto
       ul.navbar-nav
-        li.nav-item
-          n-link.nav-link(v-scroll-to="'#about'", to)
+        li.nav-item(v-for="(value, key, index) in navItems", :key="index")
+          n-link.nav-link(v-scroll-to="`#${key}`", to)
             .icon
-              img(v-lazy="about")
-            .text ABOUT
-        li.nav-item
-          n-link.nav-link(v-scroll-to="'#concept'", to)
-            .icon
-              img(v-lazy="concept")
-            .text CONCEPT
-        li.nav-item
-          n-link.nav-link(v-scroll-to="'#gallery'", to)
-            .icon
-              img(v-lazy="gallery")
-            .text GALLERY
-        li.nav-item
-          n-link.nav-link(v-scroll-to="'#team'", to)
-            .icon
-              img(v-lazy="team")
-            .text TEAM
-        li.nav-item
-          n-link.nav-link(v-scroll-to="'#blog'", to)
-            .icon
-              img(v-lazy="blog")
-            .text BLOG
-        li.nav-item
-          n-link.nav-link(v-scroll-to="'#event'", to)
-            .icon
-              img(v-lazy="event")
-            .text EVENT
-        li.nav-item
-          n-link.nav-link(v-scroll-to="'#contact'", to)
-            .icon
-              img(v-lazy="contact")
-            .text CONTACT
+              img(v-lazy="value")
+            .text {{ key.toUpperCase() }}
   #navbarMenu.container
     ul.navbar-nav(@click="toggleActive")
-      li.nav-item
-        n-link.nav-link(v-scroll-to="'#about'", to)
+      li.nav-item(v-for="(value, key, index) in navItems", :key="index")
+        n-link.nav-link(v-scroll-to="`#${key}`", to)
           span.icon
-            img(v-lazy="about")
-          span.text ABOUT
-      li.nav-item
-        n-link.nav-link(v-scroll-to="'#concept'", to)
-          span.icon
-            img(v-lazy="concept")
-          span.text CONCEPT
-      li.nav-item
-        n-link.nav-link(v-scroll-to="'#gallery'", to)
-          span.icon
-            img(v-lazy="gallery")
-          span.text GALLERY
-      li.nav-item
-        n-link.nav-link(v-scroll-to="'#team'", to)
-          span.icon
-            img(v-lazy="team")
-          span.text TEAM
-      li.nav-item
-        n-link.nav-link(v-scroll-to="'#blog'", to)
-          span.icon
-            img(v-lazy="blog")
-          span.text BLOG
-      li.nav-item
-        n-link.nav-link(v-scroll-to="'#event'", to)
-          span.icon
-            img(v-lazy="event")
-          span.text EVENT
-      li.nav-item
-        n-link.nav-link(v-scroll-to="'#contact'", to)
-          span.icon
-            img(v-lazy="contact")
-          span.text CONTACT
+            img(v-lazy="value")
+          span.text {{ key.toUpperCase() }}
 </template>
 
 <script>
@@ -101,13 +41,7 @@ import contact from "@/assets/images/contact.svg";
 export default {
   data() {
     return {
-      about,
-      concept,
-      gallery,
-      team,
-      blog,
-      event,
-      contact,
+      navItems: { about, concept, gallery, team, blog, event, contact },
       activeLink: "",
       isActive: false,
     };
