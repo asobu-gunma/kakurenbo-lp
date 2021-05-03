@@ -6,7 +6,8 @@
       :logo="galleryLogo",
       title="ギャラリー",
       subtitle="Photo Gallery",
-      description="百聞は一見にしかず"
+      description="百聞は一見にしかず",
+      :isMainSection="true"
     )
     s-gallery-tile(:gallery="gallery")
   section.section.section-dark

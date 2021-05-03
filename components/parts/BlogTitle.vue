@@ -1,6 +1,6 @@
 <template lang="pug">
 .section-header
-  .section-title
+  h1.section-title
     n-link(to="/blog") かくれんぼ日記
   h1.section-subtitle Kakurenbo in Gunma Official Blog
   .section-description 最新のチャレンジや動向をコンテンツとしてお届け
@@ -18,6 +18,7 @@
     font-family: $ja-accent-family
     letter-spacing: 5px
     margin-bottom: 0
+    line-height: 1.5
   .section-subtitle
     font-family: $en-accent-family
     font-weight: normal

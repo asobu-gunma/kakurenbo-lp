@@ -8,7 +8,8 @@
       :logo="aboutLogo",
       title="かくれんぼ in ぐんま",
       subtitle="What Kakurenbo in Gunma?",
-      description="私達の成り立ちと想い"
+      description="私達の成り立ちと想い",
+      :isMainSection="true"
     )
     s-about
   section.section
@@ -51,7 +52,7 @@
       :logo="eventLogo",
       title="次回開催予定",
       subtitle="Event Schedule",
-      description="戦士たちよ剣を握れ"
+      description="参加する人この指とまれ"
     )
     s-event(:event="event")
   section.section.section-dark

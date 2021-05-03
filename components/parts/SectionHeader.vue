@@ -2,8 +2,9 @@
 .section-header
   .section-logo
     img(v-lazy="logo")
-  h2.section-title(:style="`color: ${titleColor};`") {{ title }}
-  h3.section-subtitle(:style="`color: ${subtitleColor};`") {{ subtitle }}
+  h1.section-title(v-if="isMainSection", :style="`color: ${titleColor};`") {{ title }}
+  h2.section-title(v-else, :style="`color: ${titleColor};`") {{ title }}
+  .section-subtitle(:style="`color: ${subtitleColor};`") {{ subtitle }}
   .section-description {{ description }}
 </template>
 
@@ -32,6 +33,10 @@ export default {
     subtitleColor: {
       type: String,
       default: "black",
+    },
+    isMainSection: {
+      type: Boolean,
+      default: false,
     },
   },
 };

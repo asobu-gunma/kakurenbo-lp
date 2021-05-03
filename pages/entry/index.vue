@@ -7,7 +7,8 @@
       :logo="entryLogo",
       title="参加申込",
       subtitle="Entry Form",
-      description="熱き想いを胸に"
+      description="参加する人この指とまれ",
+      :isMainSection="true"
     )
     s-entry-form(v-if="event")
     .container(v-else)
