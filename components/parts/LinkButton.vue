@@ -31,6 +31,7 @@ export default {
 
 <style lang="sass" scoped>
 .link
+  display: inline-block
   color: black
   font-family: $en-accent-family
   padding: 15px 20px

@@ -24,12 +24,13 @@
     p-section-header#gallery(
       :logo="galleryLogo",
       title="ギャラリー",
-      subtitle="Photo Gallery",
+      subtitle="Photo & Movie Gallery",
       description="百聞は一見にしかず"
     )
-    s-gallery(:gallery="gallery")
-    s-gallery-sp(:gallery="gallery")
+    s-gallery(:gallery="photos")
+    s-gallery-sp(:gallery="photos")
     p-link-button(path="/gallery", pageName="Gallery")
+    s-gallery-movie(:youtubeIds="youtubeIds")
   section.section
     p-section-header#team(
       :logo="teamLogo",
@@ -78,6 +79,7 @@ import SAbout from "@/components/sections/About";
 import SConcept from "@/components/sections/Concept";
 import SGallery from "@/components/sections/Gallery";
 import SGallerySp from "@/components/sections/GallerySp";
+import SGalleryMovie from "@/components/sections/GalleryMovie";
 import STeam from "@/components/sections/Team";
 import SBlog from "@/components/sections/Blog";
 import SEvent from "@/components/sections/Event";
@@ -102,6 +104,7 @@ export default {
     SConcept,
     SGallery,
     SGallerySp,
+    SGalleryMovie,
     STeam,
     SBlog,
     SEvent,
@@ -122,7 +125,8 @@ export default {
     const galleryRes = await app.$ctfClient.getEntries({
       content_type: "gallery",
     });
-    const gallery = galleryRes.items[0].fields.photos.slice(0, 6);
+    let { photos, youtubeIds } = galleryRes.items[0].fields;
+    photos = photos.slice(0, 6); // 先頭から6枚のみ表示
 
     const memberRes = await app.$ctfClient.getEntries({
       content_type: "member",
@@ -145,7 +149,8 @@ export default {
     const event = eventRes.items[0];
 
     return {
-      gallery,
+      photos,
+      youtubeIds,
       memberList,
       blogPosts,
       event,
