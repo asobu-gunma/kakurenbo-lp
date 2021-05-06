@@ -23,7 +23,7 @@ export default {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'universal',
+  ssr: true,
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -105,6 +105,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/toast',
     '@nuxtjs/markdownit',
@@ -139,7 +140,12 @@ export default {
     hardSource: true,
     transpile: [
       'vee-validate/dist/rules',
-    ]
+    ],
+    babel: {
+      presets({ isServer }, [preset, options]) {
+        options.loose = true
+      },
+    },
   },
   generate: {
     async routes() {
