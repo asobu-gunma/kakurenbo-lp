@@ -4,11 +4,11 @@
     .row
       .col-lg-1.col-sm-1.mb-lg-0.mb-5
         .person
-          img(src="@/assets/images/seeker.svg")
+          img(src="@/assets/images/seeker.svg", alt="seeker")
       .offset-lg-2.offset-sm-3
       .concept.col-lg-2.col-sm-4.mb-lg-0.mb-5
         .person
-          img(src="@/assets/images/hider1.svg")
+          img(src="@/assets/images/hider1.svg", alt="hider1")
         .catch
           | 大人も子供も楽しめる
         .explain
@@ -17,14 +17,14 @@
       .offset-lg-0.offset-sm-2
       .concept.col-lg-2.col-sm-4.mb-lg-0.mb-5
         .person
-          img(src="@/assets/images/hider2.svg")
+          img(src="@/assets/images/hider2.svg", alt="hider2")
         .catch
           | 運動不足の解消に
         .explain
           | じっと隠れているだけでは勝てない設計をしています。勝つためには走ることも重要です。
       .concept.col-lg-2.col-sm-4.mb-lg-0.mb-5
         .person
-          img(src="@/assets/images/hider3.svg")
+          img(src="@/assets/images/hider3.svg", alt="hider3")
         .catch
           | 3密を避けて安全に
         .explain

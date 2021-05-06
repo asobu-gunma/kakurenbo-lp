@@ -7,7 +7,10 @@ n-link.event-button(
   to
 )
   .event-detail
-    img.event-image(v-lazy="event.fields.image.fields.file.url")
+    img.event-image(
+      v-lazy="event.fields.image.fields.file.url",
+      alt="event image"
+    )
     .event-text
       .event-date {{ eventButtonDate }}開催！
       .event-enter 詳細はコチラ！

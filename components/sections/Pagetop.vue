@@ -2,7 +2,7 @@
 .welcome(:class="{ fixed: $store.state.isFixed }")
   #pageTop.page-top(v-lazy:background-image="topImage")
     .logo
-      img(v-lazy="logo")
+      img(v-lazy="logo", alt="logo")
     .subtitle 隠した童心、解き放て。
   g-header
 </template>

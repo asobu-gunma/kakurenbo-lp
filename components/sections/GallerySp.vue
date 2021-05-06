@@ -6,7 +6,7 @@
         .photo(v-lazy:background-image="photo.fields.file.url")
   ul.pagination
     li.prev(@click="slidePrev")
-      img(:src="arrowLeft")
+      img(:src="arrowLeft", alt="arrow left")
     li.page(
       v-for="(photo, index) in gallery",
       :key="photo.sys.id",
@@ -14,7 +14,7 @@
       @click="slideTo(index)"
     )
     li.next(@click="slideNext")
-      img(:src="arrowRight")
+      img(:src="arrowRight", alt="arrow right")
 </template>
 
 <script>

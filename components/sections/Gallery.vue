@@ -6,9 +6,9 @@
         .photo(v-lazy:background-image="photo.fields.file.url")
     .navigation
       .prev(@click="slidePrev")
-        img(:src="arrowLeft")
+        img(:src="arrowLeft", alt="arrow left")
       .next(@click="slideNext")
-        img(:src="arrowRight")
+        img(:src="arrowRight", alt="arrow right")
   ul.pagination
     li.page(
       v-for="(photo, index) in gallery",

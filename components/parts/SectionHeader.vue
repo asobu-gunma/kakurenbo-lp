@@ -1,7 +1,7 @@
 <template lang="pug">
 .section-header
   .section-logo
-    img(v-lazy="logo")
+    img(v-lazy="logo", alt="logo")
   h1.section-title(v-if="isMainSection", :style="`color: ${titleColor};`") {{ title }}
   h2.section-title(v-else, :style="`color: ${titleColor};`") {{ title }}
   .section-subtitle(:style="`color: ${subtitleColor};`") {{ subtitle }}

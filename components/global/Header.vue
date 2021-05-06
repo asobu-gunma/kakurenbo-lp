@@ -18,14 +18,14 @@ header.navbar.navbar-expand-lg.header-nav(
         li.nav-item(v-for="(value, key, index) in navItems", :key="index")
           n-link.nav-link(v-scroll-to="`#${key}`", to)
             .icon
-              img(v-lazy="value")
+              img(v-lazy="value", :alt="key")
             .text {{ key.toUpperCase() }}
   #navbarMenu.container
     ul.navbar-nav(@click="toggleActive")
       li.nav-item(v-for="(value, key, index) in navItems", :key="index")
         n-link.nav-link(v-scroll-to="`#${key}`", to)
           span.icon
-            img(v-lazy="value")
+            img(v-lazy="value", :alt="key")
           span.text {{ key.toUpperCase() }}
 </template>
 
