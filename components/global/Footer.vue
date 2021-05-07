@@ -3,6 +3,8 @@ footer.footer
   span &copy;
   strong.mr-1 TOYOKAWA YUTA
   span 2020
+  span -
+  span {{ new Date().getFullYear() }}
 </template>
 
 <style lang="sass" scoped>
