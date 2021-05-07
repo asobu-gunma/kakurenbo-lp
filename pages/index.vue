@@ -157,7 +157,7 @@ export default {
     };
   },
   head() {
-    const { domain } = process.env;
+    const domain = process.env.domain;
     const imageUrl = `https://${domain}/ogp.jpg`;
     const pageUrl = `https://${domain}`;
     return {

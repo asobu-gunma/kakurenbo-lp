@@ -170,7 +170,6 @@ export default {
   robots: {
     UserAgent: '*',
     // クローリングしないパスを記述
-    Disallow: '/_nuxt',
     // sitemap.xmlのURLを記述
     Sitemap: `https://${domain}/sitemap.xml`,
   },
