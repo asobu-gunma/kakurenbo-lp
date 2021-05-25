@@ -49,7 +49,8 @@
             span.unit 円(税込)
           .item
             span 子供（中学生以下）
-            span.value 無料
+            span.value {{ event.fields.feeChild.toLocaleString() }}
+            span.unit 円(税込)
           .excuse ※ 当日のお支払いは現金のみでお願いします。
       .col-lg-5.col-sm-6
         .event-schedule
