@@ -1,6 +1,6 @@
 <template lang="pug">
 #wrapper
-  event-button(:event="event")
+  p-event-button(:event="event")
   section.section
     s-pagetop
   section.section
