@@ -5,12 +5,12 @@
   section.section
     p-section-header(
       :logo="entryLogo",
-      title="参加申込",
-      subtitle="Entry Form",
-      description="参加する人この指とまれ",
+      :title="title",
+      :subtitle="subtitle",
+      :description="description",
       :isMainSection="true"
     )
-    s-entry-form(v-if="event")
+    s-entry-form(v-if="event", :isStopEntry="event.fields.isStopEntry")
     .container(v-else)
       .preparing 準備中です。しばしお待ち下さい。
   g-footer
@@ -46,6 +46,19 @@ export default {
     return {
       event,
     };
+  },
+  computed: {
+    title() {
+      return this.event.fields.isStopEntry ? "キャンセル待ち受付" : "参加申込";
+    },
+    subtitle() {
+      return this.event.fields.isStopEntry ? "Wait Cancel Form" : "Entry Form";
+    },
+    description() {
+      return this.event.fields.isStopEntry
+        ? "空き状況を随時お届けまします"
+        : "参加する人この指とまれ";
+    },
   },
 };
 </script>

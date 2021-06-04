@@ -138,7 +138,7 @@ validation-observer(v-slot="{ handleSubmit, invalid }")
             )
           input.btn.btn-lg.btn-kakurenbo(
             type="submit",
-            value="参加を申し込む",
+            :value="submitText",
             :disabled="invalid"
           )
 </template>
@@ -147,6 +147,9 @@ validation-observer(v-slot="{ handleSubmit, invalid }")
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default {
+  props: {
+    isStopEntry: { type: Boolean, default: false },
+  },
   data() {
     return {
       faTimes,
@@ -202,10 +205,10 @@ export default {
         from: `${process.env.projectName} エントリーフォーム <entry@${process.env.domain}>`,
         to: [email],
         bcc: [process.env.mailTo],
-        subject: `【${process.env.projectName}】参加申し込みを受け付けました`,
+        subject: `【${process.env.projectName}】${this.announceText}を受け付けました`,
         text: `
-以下の内容でイベントへの参加申し込みを受け付けました。
-追って当日の詳細をご連絡致します！
+以下の内容でイベントへの${this.announceText}を受け付けました。
+${this.subAnnounceText}
 
 ---
 ${users.join("\n\n")}
@@ -242,13 +245,13 @@ https://www.facebook.com/groups/705675266823073
           mailOption
         );
         this.$toast.success(
-          "参加申し込みを受け付けました。ありがとうございました。",
+          `${this.announceText}を受け付けました。ありがとうございました。`,
           { duration: 5000 }
         );
         this.$router.push("/");
       } catch (err) {
         this.$toast.error(
-          "参加申し込みに失敗しました。時間をおいて再度お試しください。",
+          `${this.announceText}に失敗しました。時間をおいて再度お試しください。`,
           { duration: 5000 }
         );
         console.log(err);
@@ -256,6 +259,19 @@ https://www.facebook.com/groups/705675266823073
       } finally {
         this.$nuxt.$loading.finish();
       }
+    },
+  },
+  computed: {
+    submitText() {
+      return this.isStopEntry ? "キャンセル待ちをする" : "参加を申し込む";
+    },
+    announceText() {
+      return this.isStopEntry ? "キャンセル待ち" : "参加申し込み";
+    },
+    subAnnounceText() {
+      return this.isStopEntry
+        ? "キャンセルが入り次第ご連絡いたします！"
+        : "追って当日の詳細をご連絡いたします！";
     },
   },
 };

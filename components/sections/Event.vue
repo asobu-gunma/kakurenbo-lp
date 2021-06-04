@@ -66,7 +66,7 @@
     .row.mt-4
       .offset-lg-1.col-lg-11.col-sm-12
         n-link.entry-link(to="/entry")
-          strong かくれんぼ選手権への参加申込はコチラ
+          strong {{ entryButtonText }}
           fa.ml-2(:icon="faAngleDoubleRight")
   .container(v-else)
     .preparing 準備中です。しばしお待ち下さい。
@@ -102,6 +102,11 @@ export default {
   computed: {
     eventDateArray() {
       return this.parseDatetimeArray(this.event.fields.eventDate);
+    },
+    entryButtonText() {
+      return this.event.fields.isStopEntry
+        ? "定員に達しました。キャンセル待ちはコチラ"
+        : "かくれんぼ選手権への参加申込はコチラ";
     },
   },
 };
