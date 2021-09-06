@@ -45,13 +45,20 @@
             span 参加費
           .item
             span 大人（高校生以上）
-            span.value {{ event.fields.fee.toLocaleString() }}
-            span.unit 円(税込)
+            template(v-if="event.fields.fee > 0")
+              span.value {{ event.fields.fee.toLocaleString() }}
+              span.unit 円(税込)
+            template(v-else)
+              span.value 無料
           .item
             span 子供（中学生以下）
-            span.value {{ event.fields.feeChild.toLocaleString() }}
-            span.unit 円(税込)
-          .excuse ※ 当日のお支払いは現金のみでお願いします。
+            template(v-if="event.fields.feeChild > 0")
+              span.value {{ event.fields.feeChild.toLocaleString() }}
+              span.unit 円(税込)
+            template(v-else)
+              span.value 無料
+          template(v-if="event.fields.fee > 0 || event.fields.feeChild > 0")
+            .excuse ※ 当日のお支払いは現金のみでお願いします。
       .col-lg-5.col-sm-6
         .event-schedule
           .label
