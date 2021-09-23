@@ -1,4 +1,4 @@
-const domain = "kakurenbo.club"
+const domain = "www.kakurenbo.club"
 const projectName = "かくれんぼ in ぐんま"
 const pageTitle = `${projectName} | 公式サイト`
 const description =
