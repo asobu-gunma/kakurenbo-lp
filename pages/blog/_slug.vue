@@ -1,49 +1,25 @@
 <template lang="pug">
 #wrapper
-  p-page-header
+  parts-page-header
   section.section
-    p-blog-title
-    s-blog-post(:blogPost="blogPost")
-    m-next-prev(:nextPost="nextPost", :prevPost="prevPost")
+    parts-blog-title
+    sections-blog-post(:blogPost="blogPost")
+    modules-next-prev(:nextPost="nextPost", :prevPost="prevPost")
   section.section.section-dark
-    p-section-header(
-      :logo="contactLogo",
+    parts-section-header(
+      logo="svg-contact",
       title="お問い合わせ",
       subtitle="Get In Touch",
       description="気兼ねなく お気軽に ご連絡ください",
       titleColor="#FFC32A",
       subtitleColor="white"
     )
-    s-contact
-  g-footer
+    sections-contact
+  parts-global-footer
 </template>
 
 <script>
-import GFooter from "@/components/global/Footer";
-import PPageHeader from "@/components/parts/PageHeader";
-import PBlogTitle from "@/components/parts/BlogTitle";
-import PSectionHeader from "@/components/parts/SectionHeader";
-import MNextPrev from "@/components/modules/NextPrev";
-import SBlogPost from "@/components/sections/BlogPost";
-import SContact from "@/components/sections/Contact";
-
-import contactLogo from "@/assets/images/contact.svg";
-
 export default {
-  components: {
-    GFooter,
-    PPageHeader,
-    PBlogTitle,
-    PSectionHeader,
-    MNextPrev,
-    SBlogPost,
-    SContact,
-  },
-  data() {
-    return {
-      contactLogo,
-    };
-  },
   async asyncData({ app, params, payload }) {
     let blogPost;
     if (payload) {

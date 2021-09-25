@@ -15,33 +15,25 @@ header.navbar.navbar-expand-lg.header-nav(
         )
     .collapse-menu.mx-auto
       ul.navbar-nav
-        li.nav-item(v-for="(value, key, index) in navItems", :key="index")
-          n-link.nav-link(v-scroll-to="`#${key}`", to)
+        li.nav-item(v-for="(value, index) in navItems", :key="index")
+          n-link.nav-link(v-scroll-to="`#${value}`", to)
             .icon
-              img(v-lazy="value", :alt="key")
-            .text {{ key.toUpperCase() }}
+              .img(:is="`svg-${value}`")
+            .text {{ value.toUpperCase() }}
   #navbarMenu.container
     ul.navbar-nav(@click="toggleActive")
-      li.nav-item(v-for="(value, key, index) in navItems", :key="index")
-        n-link.nav-link(v-scroll-to="`#${key}`", to)
+      li.nav-item(v-for="(value, index) in navItems", :key="index")
+        n-link.nav-link(v-scroll-to="`#${value}`", to)
           span.icon
-            img(v-lazy="value", :alt="key")
-          span.text {{ key.toUpperCase() }}
+            .img(:is="`svg-${value}`")
+          span.text {{ value.toUpperCase() }}
 </template>
 
 <script>
-import about from "@/assets/images/about.svg";
-import concept from "@/assets/images/concept.svg";
-import gallery from "@/assets/images/gallery.svg";
-import team from "@/assets/images/team.svg";
-import blog from "@/assets/images/blog.svg";
-import event from "@/assets/images/event.svg";
-import contact from "@/assets/images/contact.svg";
-
 export default {
   data() {
     return {
-      navItems: { about, concept, gallery, team, blog, event, contact },
+      navItems: ["about", "concept", "gallery", "team", "blog", "event", "contact"],
       activeLink: "",
       isActive: false,
     };
@@ -86,12 +78,14 @@ export default {
       font-weight: bold
       div.icon
         margin-bottom: 5px
-        img
+        .img
           width: 30px
+          height: auto
       span.icon
         margin-right: 5px
-        img
+        .img
           width: 20px
+          height: auto
 @include media-breakpoint-down(md)
   .toggle-button
     display: block !important

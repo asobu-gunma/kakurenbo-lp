@@ -1,126 +1,76 @@
 <template lang="pug">
 #wrapper
-  p-event-button(:event="event")
+  parts-event-button(:event="event")
   section.section
-    s-pagetop
+    sections-pagetop
   section.section
-    p-section-header#about(
-      :logo="aboutLogo",
+    parts-section-header#about(
+      logo="svg-about",
       title="かくれんぼ in ぐんま",
       subtitle="What Kakurenbo in Gunma?",
       description="私達の成り立ちと想い",
       :isMainSection="true"
     )
-    s-about
+    sections-about
   section.section
-    p-section-header#concept(
-      :logo="conceptLogo",
+    parts-section-header#concept(
+      logo="svg-concept",
       title="コンセプト",
       subtitle="Our Concept",
       description="かくれんぼの設計にあたり"
     )
-    s-concept
+    sections-concept
   section.section
-    p-section-header#gallery(
-      :logo="galleryLogo",
+    parts-section-header#gallery(
+      logo="svg-gallery",
       title="ギャラリー",
       subtitle="Photo & Movie Gallery",
       description="百聞は一見にしかず"
     )
-    s-gallery(:gallery="photos")
-    s-gallery-sp(:gallery="photos")
-    p-link-button(path="/gallery", pageName="Gallery")
-    s-gallery-movie(:youtubeIds="youtubeIds")
+    sections-gallery(:gallery="photos")
+    sections-gallery-sp(:gallery="photos")
+    parts-link-button(path="/gallery", pageName="Gallery")
+    sections-gallery-movie(:youtubeIds="youtubeIds")
   section.section
-    p-section-header#team(
-      :logo="teamLogo",
+    parts-section-header#team(
+      logo="svg-team",
       title="運営チーム",
       subtitle="Team Member",
       description="ともに歩む仲間たち"
     )
-    s-team(:memberList="memberList")
+    sections-team(:memberList="memberList")
   section.section
-    p-section-header#blog(
-      :logo="blogLogo",
+    parts-section-header#blog(
+      logo="svg-blog",
       title="最新情報",
       subtitle="Recent Blog Posts",
       description="最新のチャレンジや動向をコンテンツとしてお届け"
     )
-    s-blog(:blogPosts="blogPosts")
-    p-link-button(path="/blog", pageName="Blog")
+    sections-blog(:blogPosts="blogPosts")
+    parts-link-button(path="/blog", pageName="Blog")
   section.section
-    p-section-header#event(
-      :logo="eventLogo",
+    parts-section-header#event(
+      logo="svg-event",
       title="次回開催予定",
       subtitle="Event Schedule",
       description="参加する人この指とまれ"
     )
-    s-event(:event="event")
+    sections-event(:event="event")
   section.section.section-dark
-    p-section-header#contact(
-      :logo="contactLogo",
+    parts-section-header#contact(
+      logo="svg-contact",
       title="お問い合わせ",
       subtitle="Get In Touch",
       description="気兼ねなく お気軽に ご連絡ください",
       titleColor="#FFC32A",
       subtitleColor="white"
     )
-    s-contact
-  g-footer
+    sections-contact
+  parts-global-footer
 </template>
 
 <script>
-import GFooter from "@/components/global/Footer";
-import PEventButton from "@/components/parts/EventButton";
-import PSectionHeader from "@/components/parts/SectionHeader";
-import PLinkButton from "@/components/parts/LinkButton";
-import SPagetop from "@/components/sections/Pagetop";
-import SAbout from "@/components/sections/About";
-import SConcept from "@/components/sections/Concept";
-import SGallery from "@/components/sections/Gallery";
-import SGallerySp from "@/components/sections/GallerySp";
-import SGalleryMovie from "@/components/sections/GalleryMovie";
-import STeam from "@/components/sections/Team";
-import SBlog from "@/components/sections/Blog";
-import SEvent from "@/components/sections/Event";
-import SContact from "@/components/sections/Contact";
-
-import aboutLogo from "@/assets/images/about.svg";
-import conceptLogo from "@/assets/images/concept.svg";
-import galleryLogo from "@/assets/images/gallery.svg";
-import teamLogo from "@/assets/images/team.svg";
-import blogLogo from "@/assets/images/blog.svg";
-import eventLogo from "@/assets/images/event.svg";
-import contactLogo from "@/assets/images/contact.svg";
-
 export default {
-  components: {
-    GFooter,
-    PEventButton,
-    PSectionHeader,
-    PLinkButton,
-    SPagetop,
-    SAbout,
-    SConcept,
-    SGallery,
-    SGallerySp,
-    SGalleryMovie,
-    STeam,
-    SBlog,
-    SEvent,
-    SContact,
-  },
-  data() {
-    return {
-      aboutLogo,
-      conceptLogo,
-      galleryLogo,
-      teamLogo,
-      blogLogo,
-      eventLogo,
-      contactLogo,
-    };
-  },
   async asyncData({ app }) {
     const galleryRes = await app.$ctfClient.getEntries({
       content_type: "gallery",

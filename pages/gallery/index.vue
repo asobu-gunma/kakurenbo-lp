@@ -1,52 +1,30 @@
 <template lang="pug">
 #wrapper
-  p-page-header
+  parts-page-header
   section.section
-    p-section-header(
-      :logo="galleryLogo",
+    parts-section-header(
+      logo="svg-gallery",
       title="ギャラリー",
       subtitle="Photo Gallery",
       description="百聞は一見にしかず",
       :isMainSection="true"
     )
-    s-gallery-tile(:gallery="gallery")
+    sections-gallery-tile(:gallery="gallery")
   section.section.section-dark
-    p-section-header(
-      :logo="contactLogo",
+    parts-section-header(
+      logo="svg-contact",
       title="お問い合わせ",
       subtitle="Get In Touch",
       description="気兼ねなく お気軽に ご連絡ください",
       titleColor="#FFC32A",
       subtitleColor="white"
     )
-    s-contact
-  g-footer
+    sections-contact
+  parts-global-footer
 </template>
 
 <script>
-import GFooter from "@/components/global/Footer";
-import PPageHeader from "@/components/parts/PageHeader";
-import PSectionHeader from "@/components/parts/SectionHeader";
-import SGalleryTile from "@/components/sections/GalleryTile";
-import SContact from "@/components/sections/Contact";
-
-import galleryLogo from "@/assets/images/gallery.svg";
-import contactLogo from "@/assets/images/contact.svg";
-
 export default {
-  components: {
-    GFooter,
-    PPageHeader,
-    PSectionHeader,
-    SGalleryTile,
-    SContact,
-  },
-  data() {
-    return {
-      galleryLogo,
-      contactLogo,
-    };
-  },
   async asyncData({ route, app, env }) {
     const galleryRes = await app.$ctfClient.getEntries({
       content_type: "gallery",

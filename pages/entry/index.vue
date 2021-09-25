@@ -1,41 +1,23 @@
 
 <template lang="pug">
 #wrapper
-  p-page-header
+  parts-page-header
   section.section
-    p-section-header(
-      :logo="entryLogo",
+    parts-section-header(
+      logo="svg-entry",
       :title="title",
       :subtitle="subtitle",
       :description="description",
       :isMainSection="true"
     )
-    s-entry-form(v-if="event", :isStopEntry="event.fields.isStopEntry")
+    sections-entry-form(v-if="event", :isStopEntry="event.fields.isStopEntry")
     .container(v-else)
       .preparing 準備中です。しばしお待ち下さい。
-  g-footer
+  parts-global-footer
 </template>
 
 <script>
-import GFooter from "@/components/global/Footer";
-import PPageHeader from "@/components/parts/PageHeader";
-import PSectionHeader from "@/components/parts/SectionHeader";
-import SEntryForm from "@/components/sections/EntryForm";
-
-import entryLogo from "@/assets/images/entry.svg";
-
 export default {
-  components: {
-    GFooter,
-    PPageHeader,
-    PSectionHeader,
-    SEntryForm,
-  },
-  data() {
-    return {
-      entryLogo,
-    };
-  },
   async asyncData({ route, app, env }) {
     const eventRes = await app.$ctfClient.getEntries({
       content_type: "event",

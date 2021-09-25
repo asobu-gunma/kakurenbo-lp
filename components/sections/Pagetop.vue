@@ -2,24 +2,18 @@
 .welcome(:class="{ fixed: $store.state.isFixed }")
   #pageTop.page-top(v-lazy:background-image="topImage")
     .logo
-      img(v-lazy="logo", alt="logo")
+      svg-logo.img
     .subtitle 隠した童心、解き放て。
-  g-header
+  parts-global-header
 </template>
 
 <script>
 import topImage from "@/assets/images/pagetop.jpg";
-import logo from "@/assets/images/logo.svg";
-import GHeader from "@/components/global/Header";
 
 export default {
-  components: {
-    GHeader,
-  },
   data() {
     return {
       topImage,
-      logo,
     };
   },
 };
@@ -53,7 +47,7 @@ export default {
   .logo
     text-align: center
     padding-top: 25px
-    img
+    .img
       width: 250px
   .subtitle
     position: absolute
