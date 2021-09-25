@@ -4,18 +4,14 @@
     .logo
       img(v-lazy="logo", alt="logo")
     .subtitle 隠した童心、解き放て。
-  g-header
+  parts-global-header
 </template>
 
 <script>
 import topImage from "@/assets/images/pagetop.jpg";
 import logo from "@/assets/images/logo.svg";
-import GHeader from "@/components/global/Header";
 
 export default {
-  components: {
-    GHeader,
-  },
   data() {
     return {
       topImage,
