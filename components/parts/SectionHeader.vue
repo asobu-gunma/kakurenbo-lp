@@ -1,7 +1,7 @@
 <template lang="pug">
 .section-header
   .section-logo
-    img(v-lazy="logo", alt="logo")
+    .logo(:is="logo")
   h1.section-title(v-if="isMainSection", :style="`color: ${titleColor};`") {{ title }}
   h2.section-title(v-else, :style="`color: ${titleColor};`") {{ title }}
   .section-subtitle(:style="`color: ${subtitleColor};`") {{ subtitle }}
@@ -50,6 +50,9 @@ export default {
   padding-bottom: 80px
   .section-logo
     margin-bottom: 20px
+    .logo
+      width: 80px
+      height: auto
   .section-title
     font-family: $ja-accent-family
     letter-spacing: 5px
@@ -68,8 +71,9 @@ export default {
     letter-spacing: 3px
   @include media-breakpoint-up(sm)
     .section-logo
-      img
+      .logo
         width: 80px
+        height: auto
     .section-title
       font-size: 40px
     .section-subtitle

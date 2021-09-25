@@ -11,7 +11,7 @@
     )
   section.section.section-dark
     parts-section-header(
-      :logo="contactLogo",
+      logo="svg-contact",
       title="お問い合わせ",
       subtitle="Get In Touch",
       description="気兼ねなく お気軽に ご連絡ください",
@@ -23,14 +23,7 @@
 </template>
 
 <script>
-import contactLogo from "@/assets/images/contact.svg";
-
 export default {
-  data() {
-    return {
-      contactLogo,
-    };
-  },
   async asyncData({ route, app, env }) {
     let pageNum = 1;
     if (typeof route.params.page !== "undefined") {

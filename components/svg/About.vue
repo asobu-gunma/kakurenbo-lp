@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.1.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<template>
 <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <style type="text/css">
@@ -20,3 +19,4 @@
 <path class="st0" d="M412.5,53.2c-0.6,1.1-1.1,2.2-1.6,3.3v34.2c3.7,8.4,10.1,15.8,18.8,20.5c20.8,11.3,46.7,3.6,58-17.2
 	c11.3-20.8,3.6-46.7-17.2-58S423.8,32.5,412.5,53.2z"/>
 </svg>
+</template>

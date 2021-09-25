@@ -6,9 +6,9 @@
         .photo(v-lazy:background-image="photo.fields.file.url")
     .navigation
       .prev(@click="slidePrev")
-        img(:src="arrowLeft", alt="arrow left")
+        svg-arrow-left.img
       .next(@click="slideNext")
-        img(:src="arrowRight", alt="arrow right")
+        svg-arrow-right.img
   ul.pagination
     li.page(
       v-for="(photo, index) in gallery",
@@ -21,8 +21,6 @@
 <script>
 import { Hooper, Slide, Navigation } from "hooper";
 import "hooper/dist/hooper.css";
-import arrowLeft from "@/assets/images/arrow_left.svg";
-import arrowRight from "@/assets/images/arrow_right.svg";
 export default {
   components: {
     Hooper,
@@ -37,8 +35,6 @@ export default {
   },
   data() {
     return {
-      arrowLeft,
-      arrowRight,
       hooperSettings: {
         itemsToShow: 2,
         centerMode: true,
@@ -88,8 +84,9 @@ export default {
         padding: 10px 13px 11px
         border: 1px solid white
         cursor: pointer
-        img
+        .img
           width: 15px
+          height: auto
       .prev
         left: 26%
       .next

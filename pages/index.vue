@@ -5,7 +5,7 @@
     sections-pagetop
   section.section
     parts-section-header#about(
-      :logo="aboutLogo",
+      logo="svg-about",
       title="かくれんぼ in ぐんま",
       subtitle="What Kakurenbo in Gunma?",
       description="私達の成り立ちと想い",
@@ -14,7 +14,7 @@
     sections-about
   section.section
     parts-section-header#concept(
-      :logo="conceptLogo",
+      logo="svg-concept",
       title="コンセプト",
       subtitle="Our Concept",
       description="かくれんぼの設計にあたり"
@@ -22,7 +22,7 @@
     sections-concept
   section.section
     parts-section-header#gallery(
-      :logo="galleryLogo",
+      logo="svg-gallery",
       title="ギャラリー",
       subtitle="Photo & Movie Gallery",
       description="百聞は一見にしかず"
@@ -33,7 +33,7 @@
     sections-gallery-movie(:youtubeIds="youtubeIds")
   section.section
     parts-section-header#team(
-      :logo="teamLogo",
+      logo="svg-team",
       title="運営チーム",
       subtitle="Team Member",
       description="ともに歩む仲間たち"
@@ -41,7 +41,7 @@
     sections-team(:memberList="memberList")
   section.section
     parts-section-header#blog(
-      :logo="blogLogo",
+      logo="svg-blog",
       title="最新情報",
       subtitle="Recent Blog Posts",
       description="最新のチャレンジや動向をコンテンツとしてお届け"
@@ -50,7 +50,7 @@
     parts-link-button(path="/blog", pageName="Blog")
   section.section
     parts-section-header#event(
-      :logo="eventLogo",
+      logo="svg-event",
       title="次回開催予定",
       subtitle="Event Schedule",
       description="参加する人この指とまれ"
@@ -58,7 +58,7 @@
     sections-event(:event="event")
   section.section.section-dark
     parts-section-header#contact(
-      :logo="contactLogo",
+      logo="svg-contact",
       title="お問い合わせ",
       subtitle="Get In Touch",
       description="気兼ねなく お気軽に ご連絡ください",
@@ -70,26 +70,7 @@
 </template>
 
 <script>
-import aboutLogo from "@/assets/images/about.svg";
-import conceptLogo from "@/assets/images/concept.svg";
-import galleryLogo from "@/assets/images/gallery.svg";
-import teamLogo from "@/assets/images/team.svg";
-import blogLogo from "@/assets/images/blog.svg";
-import eventLogo from "@/assets/images/event.svg";
-import contactLogo from "@/assets/images/contact.svg";
-
 export default {
-  data() {
-    return {
-      aboutLogo,
-      conceptLogo,
-      galleryLogo,
-      teamLogo,
-      blogLogo,
-      eventLogo,
-      contactLogo,
-    };
-  },
   async asyncData({ app }) {
     const galleryRes = await app.$ctfClient.getEntries({
       content_type: "gallery",

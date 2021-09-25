@@ -4,7 +4,7 @@
   parts-page-header
   section.section
     parts-section-header(
-      :logo="entryLogo",
+      logo="svg-entry",
       :title="title",
       :subtitle="subtitle",
       :description="description",
@@ -17,14 +17,7 @@
 </template>
 
 <script>
-import entryLogo from "@/assets/images/entry.svg";
-
 export default {
-  data() {
-    return {
-      entryLogo,
-    };
-  },
   async asyncData({ route, app, env }) {
     const eventRes = await app.$ctfClient.getEntries({
       content_type: "event",
