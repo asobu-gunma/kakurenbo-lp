@@ -202,7 +202,7 @@ export default {
       });
       this.$nuxt.$loading.start();
       const mailOption = {
-        from: `${process.env.projectName} エントリーフォーム <entry@${process.env.domain}>`,
+        from: `${process.env.projectName} エントリーフォーム <entry@${process.env.host}>`,
         to: [email],
         bcc: [process.env.mailTo],
         subject: `【${process.env.projectName}】${this.announceText}を受け付けました`,
@@ -241,7 +241,7 @@ https://www.facebook.com/groups/705675266823073
       };
       try {
         await this.$mgClient.messages.create(
-          `mg.${process.env.domain}`,
+          `mg.${process.env.host}`,
           mailOption
         );
         this.$toast.success(

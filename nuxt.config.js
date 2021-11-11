@@ -1,4 +1,5 @@
-const domain = "www.kakurenbo.club"
+const host = "kakurenbo.club"
+const domain = `www.${host}`
 const projectName = "かくれんぼ in ぐんま"
 const pageTitle = `${projectName} | 公式サイト`
 const description =
@@ -59,6 +60,7 @@ export default {
     ctfCdaAccessToken: process.env.CTF_CDA_ACCESS_TOKEN,
     mailgunKey: process.env.MAILGUN_KEY,
     mailTo: process.env.MAIL_TO,
+    host,
     domain,
     projectName,
     pageTitle,

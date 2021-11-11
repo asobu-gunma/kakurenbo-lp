@@ -56,7 +56,7 @@ export default {
       const { name, email, message } = this.contactForm;
       this.$nuxt.$loading.start();
       const mailOption = {
-        from: `${process.env.projectName} お問い合わせフォーム <info@${process.env.domain}>`,
+        from: `${process.env.projectName} お問い合わせフォーム <info@${process.env.host}>`,
         to: [email],
         bcc: [process.env.mailTo],
         subject: `【${process.env.projectName}】お問い合わせを受け付けました`,
@@ -92,7 +92,7 @@ https://www.facebook.com/groups/705675266823073
       };
       try {
         await this.$mgClient.messages.create(
-          `mg.${process.env.domain}`,
+          `mg.${process.env.host}`,
           mailOption
         );
         this.$toast.success(
