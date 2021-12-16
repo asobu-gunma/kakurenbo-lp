@@ -35,6 +35,9 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
+    htmlAttrs: {
+      lang: 'ja'
+    },
     title: pageTitle,
     meta: [
       { charset: 'utf-8' },
