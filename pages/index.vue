@@ -128,7 +128,7 @@ export default {
         },
         { hid: "og:type", property: "og:type", content: "article" },
         { hid: "og:image", property: "og:image", content: imageUrl },
-        { hid: "og:description", propertycontent: process.env.description },
+        { hid: "og:description", property: "og:description", content: process.env.description },
         { hid: "og:url", property: "og:url", content: pageUrl },
       ],
     };

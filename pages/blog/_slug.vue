@@ -57,7 +57,7 @@ export default {
   computed: {
     description() {
       return `${this.blogPost.fields.body
-        .substr(0, 170)
+        .substr(0, 100)
         .replace(/\n/g, "<br>")}...`;
     },
   },
@@ -89,6 +89,9 @@ export default {
         },
         { hid: "og:url", property: "og:url", content: pageUrl },
       ],
+      link: [
+        { rel: 'canonical', href: pageUrl }
+      ]
     };
   },
 };

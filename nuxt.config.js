@@ -55,7 +55,8 @@ export default {
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'mask-icon', href: 'safari-pinned-tab.svg', color: '#5bbad5' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat&display=swap' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap' },
+      { rel: 'canonical', href: `https://${domain}` },
     ]
   },
   env: {
