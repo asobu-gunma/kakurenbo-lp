@@ -8,7 +8,7 @@ executors:
       - image: cimg/node:12.18
   deploy:
     docker:
-      - image: cimg/python:3.7-node
+      - image: cimg/python:3.7.12-node
 
 commands:
   yarn_install:
@@ -22,13 +22,13 @@ commands:
             - node_modules
 
 jobs:
-#   テストが必要になった際に復活
-#   build:
-#     executor: build
-#     working_directory: ~/repo
-#     steps:
-#       - checkout
-#       - yarn_install
+  #   テストが必要になった際に復活
+  #   build:
+  #     executor: build
+  #     working_directory: ~/repo
+  #     steps:
+  #       - checkout
+  #       - yarn_install
 
   deploy:
     executor: deploy
@@ -52,10 +52,10 @@ workflows:
   version: 2
   deploy:
     jobs:
-#      - build
+      #      - build
       - deploy:
-#          requires:
-#            - build
+          #          requires:
+          #            - build
           filters:
             branches:
               only: master
