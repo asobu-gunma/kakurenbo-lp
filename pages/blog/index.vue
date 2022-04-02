@@ -58,7 +58,7 @@ export default {
         },
       ],
       link: [
-        { rel: 'canonical', href: `https://${domain}/blogs` }
+        { rel: 'canonical', href: `https://${process.env.domain}/blogs` }
       ]
     };
   },
