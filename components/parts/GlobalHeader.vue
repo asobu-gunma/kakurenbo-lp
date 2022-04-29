@@ -20,6 +20,11 @@ header.navbar.navbar-expand-lg.header-nav(
             .icon
               .img(:is="`svg-${value}`")
             .text {{ value.toUpperCase() }}
+        li.nav-item
+          a.nav-link(href="/rule_book.pdf" target="_blank" rel="noopener")
+            .icon
+              .img(is="svg-rules")
+            .text RULES
   #navbarMenu.container
     ul.navbar-nav(@click="toggleActive")
       li.nav-item(v-for="(value, index) in navItems", :key="index")
@@ -27,6 +32,11 @@ header.navbar.navbar-expand-lg.header-nav(
           span.icon
             .img(:is="`svg-${value}`")
           span.text {{ value.toUpperCase() }}
+      li.nav-item
+        a.nav-link(href="/rule_book.pdf" target="_blank" rel="noopener")
+          span.icon
+            .img(is="svg-rules")
+          span.text RULES
 </template>
 
 <script>
