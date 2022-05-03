@@ -21,15 +21,13 @@
     )
     sections-concept
   section.section
-    parts-section-header#gallery(
-      logo="svg-gallery",
-      title="ギャラリー",
-      subtitle="Photo & Movie Gallery",
+    parts-section-header#video(
+      logo="svg-video",
+      title="プロモーション映像",
+      subtitle="Promotion Video",
       description="百聞は一見にしかず"
     )
-    sections-gallery(:gallery="photos")
-    sections-gallery-sp(:gallery="photos")
-    parts-link-button.text-center(path="/gallery", pageName="Gallery")
+    sections-gallery-movie(:youtubeIds="youtubeIds")
   section.section
     parts-section-header#team(
       logo="svg-team",

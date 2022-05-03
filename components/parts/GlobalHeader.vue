@@ -33,7 +33,7 @@ header.navbar.navbar-expand-lg.header-nav(
 export default {
   data() {
     return {
-      navItems: ["rules", "gallery", "blog", "event"],
+      navItems: ["rules", "blog", "gallery", "event"],
       activeLink: "",
       isActive: false,
     };
