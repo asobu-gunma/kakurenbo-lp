@@ -192,6 +192,7 @@ export default {
             float: left
   .entry-link
     color: black
+    background-color: $accent-color
     font-family: $en-accent-family
     padding: 15px 20px
     border: 2px solid black
