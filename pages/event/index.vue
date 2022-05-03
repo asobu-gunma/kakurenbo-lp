@@ -10,6 +10,7 @@
       :description="description",
       :isMainSection="true"
     )
+    sections-event(:event="event", :noDisplayButton="true")
     sections-entry-form(v-if="event", :isStopEntry="event.fields.isStopEntry")
     .container(v-else)
       .preparing 準備中です。しばしお待ち下さい。
@@ -31,7 +32,7 @@ export default {
   },
   computed: {
     title() {
-      return this.event.fields.isStopEntry ? "キャンセル待ち受付" : "参加申込";
+      return this.event.fields.isStopEntry ? "キャンセル待ち受付" : "イベント参加申込";
     },
     subtitle() {
       return this.event.fields.isStopEntry ? "Wait Cancel Form" : "Entry Form";

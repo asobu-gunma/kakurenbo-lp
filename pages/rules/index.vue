@@ -1,7 +1,6 @@
 <template lang="pug">
 #wrapper
-  section.section
-    sections-pagetop
+  parts-page-header
   section.section
     parts-section-header#about(
       logo="svg-rules",

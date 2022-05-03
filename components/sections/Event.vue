@@ -70,9 +70,9 @@
                 .tl-item
                   .time {{ schedule.time }}
                   .content {{ schedule.content }}
-    .row.mt-4
+    .row.mt-4(v-if="!noDisplayButton")
       .offset-lg-1.col-lg-11.col-sm-12
-        n-link.entry-link(to="/entry")
+        n-link.entry-link(to="/event")
           strong {{ entryButtonText }}
           fa.ml-2(:icon="faAngleDoubleRight")
   .container(v-else)
@@ -105,6 +105,10 @@ export default {
     event: {
       type: Object,
     },
+    noDisplayButton: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     eventDateArray() {

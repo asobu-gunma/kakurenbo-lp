@@ -81,6 +81,7 @@ export default {
     .section-description
       font-size: 16px
   @include media-breakpoint-down(xs)
+    padding-bottom: 60px
     .section-logo
       img
         width: 60px

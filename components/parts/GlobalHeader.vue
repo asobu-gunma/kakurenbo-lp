@@ -16,34 +16,24 @@ header.navbar.navbar-expand-lg.header-nav(
     .collapse-menu.mx-auto
       ul.navbar-nav
         li.nav-item(v-for="(value, index) in navItems", :key="index")
-          n-link.nav-link(v-scroll-to="`#${value}`", to)
+          n-link.nav-link(:to="`/${value}`")
             .icon
               .img(:is="`svg-${value}`")
             .text {{ value.toUpperCase() }}
-        li.nav-item
-          a.nav-link(href="/rule_book.pdf" target="_blank" rel="noopener")
-            .icon
-              .img(is="svg-rules")
-            .text RULES
   #navbarMenu.container
     ul.navbar-nav(@click="toggleActive")
       li.nav-item(v-for="(value, index) in navItems", :key="index")
-        n-link.nav-link(v-scroll-to="`#${value}`", to)
+        n-link.nav-link(:to="`/${value}`")
           span.icon
             .img(:is="`svg-${value}`")
           span.text {{ value.toUpperCase() }}
-      li.nav-item
-        a.nav-link(href="/rule_book.pdf" target="_blank" rel="noopener")
-          span.icon
-            .img(is="svg-rules")
-          span.text RULES
 </template>
 
 <script>
 export default {
   data() {
     return {
-      navItems: ["about", "concept", "gallery", "team", "blog", "event", "contact"],
+      navItems: ["rules", "gallery", "blog", "event"],
       activeLink: "",
       isActive: false,
     };

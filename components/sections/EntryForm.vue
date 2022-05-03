@@ -3,7 +3,7 @@ validation-observer(v-slot="{ handleSubmit, invalid }")
   form.entry-form(@submit.prevent="handleSubmit(sendMail)")
     .container
       .row
-        .offset-lg-2.col-lg-8
+        .offset-lg-1.col-lg-10
           .user-list(v-for="(user, index) in entryForm.userList", :key="index")
             .form-group
               validation-provider(
@@ -68,23 +68,18 @@ validation-observer(v-slot="{ handleSubmit, invalid }")
                   v-model="user.age"
                 )
                   option(value="") 年代を選択してください
-                  option(value="10歳未満") 10歳未満
-                  option(value="10代") 10代
-                  option(value="20代") 20代
-                  option(value="30代") 30代
-                  option(value="40代") 40代
-                  option(value="50代") 50代
-                  option(value="60代以上") 60代以上
+                  option(value="未就学児") 未就学児
+                  option(value="小学生") 小学生
+                  option(value="中学生") 中学生
+                  option(value="高校生") 高校生
+                  option(value="大学生") 大学生
+                  option(value="一般（10代）") 一般（10代）
+                  option(value="一般（20代）") 一般（20代）
+                  option(value="一般（30代）") 一般（30代）
+                  option(value="一般（40代）") 一般（40代）
+                  option(value="一般（50代）") 一般（50代）
+                  option(value="一般（60代以上）") 一般（60代以上）
                 .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
-            .form-group(v-show="user.age === '10代'")
-              .form-check
-                input.form-check-input(
-                  type="checkbox",
-                  :name="`user_${index}_is_kids`",
-                  :id="`user_${index}_is_kids`",
-                  v-model="user.isKids"
-                )
-                label.form-check-label(:for="`user_${index}_is_kids`") 中学生以下ですか？
             .remove-user-button(v-if="index > 0")
               fa.text-danger(:icon="faTimes", @click="removeUser(index)")
           .form-group.text-right
@@ -293,6 +288,9 @@ https://www.facebook.com/groups/705675266823073
   color: $primary-grey
   background-color: $accent-color
   font-weight: bold
+  @include media-breakpoint-down(xs)
+    display: block
+    width: 100%
 .form-group
   font-size: 16px
   margin-bottom: 20px
