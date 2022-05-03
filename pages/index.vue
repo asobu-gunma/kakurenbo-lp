@@ -29,8 +29,7 @@
     )
     sections-gallery(:gallery="photos")
     sections-gallery-sp(:gallery="photos")
-    parts-link-button(path="/gallery", pageName="Gallery")
-    sections-gallery-movie(:youtubeIds="youtubeIds")
+    parts-link-button.text-center(path="/gallery", pageName="Gallery")
   section.section
     parts-section-header#team(
       logo="svg-team",
@@ -39,15 +38,6 @@
       description="ともに歩む仲間たち"
     )
     sections-team(:memberList="memberList")
-  section.section
-    parts-section-header#blog(
-      logo="svg-blog",
-      title="最新情報",
-      subtitle="Recent Blog Posts",
-      description="最新のチャレンジや動向をコンテンツとしてお届け"
-    )
-    sections-blog(:blogPosts="blogPosts")
-    parts-link-button(path="/blog", pageName="Blog")
   section.section
     parts-section-header#event(
       logo="svg-event",
