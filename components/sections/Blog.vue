@@ -4,12 +4,12 @@
     .row.blog-post(v-for="(post, index) in blogPosts")
       .col-lg-6(:class="index % 2 == 0 ? 'order-lg-1' : 'order-lg-2'")
         n-link.image(
-          :to="`/blog/${post.fields.slug}`",
+          :to="`/blog/${post.fields.slug}/`",
           v-lazy:background-image="post.fields.eyecatch.fields.file.url"
         )
       .col-lg-6(:class="index % 2 == 0 ? 'order-lg-2' : 'order-lg-1'")
         .header
-          n-link.title(:to="`/blog/${post.fields.slug}`") {{ post.fields.title }}
+          n-link.title(:to="`/blog/${post.fields.slug}/`") {{ post.fields.title }}
           .created-at
             fa.mr-2(:icon="faCalendarAlt")
             span {{ parseCreatedAt(post.sys.createdAt) }}

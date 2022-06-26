@@ -18,6 +18,7 @@
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/redirect-module": "^0.3.1",
     "@nuxtjs/robots": "^2.4.2",
     "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/toast": "^3.3.1",

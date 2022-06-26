@@ -1,7 +1,7 @@
 <template lang="pug">
 .section-header
   h1.section-title
-    n-link(to="/blog") かくれんぼ日記
+    n-link(to="/blog/") かくれんぼ日記
   h1.section-subtitle Kakurenbo in Gunma Official Blog
   .section-description 最新のチャレンジや動向をコンテンツとしてお届け
 </template>

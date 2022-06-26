@@ -5,7 +5,7 @@
       .row
         .col-6
           .next-post(v-if="nextPost")
-            n-link(:to="`/blog/${nextPost.fields.slug}`")
+            n-link(:to="`/blog/${nextPost.fields.slug}/`")
               .post-image(
                 v-lazy:background-image="nextPost.fields.eyecatch.fields.file.url"
               )
@@ -15,7 +15,7 @@
                 span {{ parseCreatedAt(nextPost.sys.createdAt) }}
         .col-6
           .prev-post(v-if="prevPost")
-            n-link(:to="`/blog/${prevPost.fields.slug}`")
+            n-link(:to="`/blog/${prevPost.fields.slug}/`")
               .post-image(
                 v-lazy:background-image="prevPost.fields.eyecatch.fields.file.url"
               )

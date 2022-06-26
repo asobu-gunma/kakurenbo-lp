@@ -16,14 +16,14 @@ header.navbar.navbar-expand-lg.header-nav(
     .collapse-menu.mx-auto
       ul.navbar-nav
         li.nav-item(v-for="(value, index) in navItems", :key="index")
-          n-link.nav-link(:to="`/${value}`")
+          n-link.nav-link(:to="`/${value}/`")
             .icon
               .img(:is="`svg-${value}`")
             .text {{ value.toUpperCase() }}
   #navbarMenu.container
     ul.navbar-nav(@click="toggleActive")
       li.nav-item(v-for="(value, index) in navItems", :key="index")
-        n-link.nav-link(:to="`/${value}`")
+        n-link.nav-link(:to="`/${value}/`")
           span.icon
             .img(:is="`svg-${value}`")
           span.text {{ value.toUpperCase() }}

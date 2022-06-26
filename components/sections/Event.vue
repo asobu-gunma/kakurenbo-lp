@@ -72,7 +72,7 @@
                   .content {{ schedule.content }}
     .row.mt-4(v-if="!noDisplayButton")
       .offset-lg-1.col-lg-11.col-sm-12
-        n-link.entry-link(to="/event")
+        n-link.entry-link(to="/event/")
           strong {{ entryButtonText }}
           fa.ml-2(:icon="faAngleDoubleRight")
   .container(v-else)

@@ -121,7 +121,8 @@ export default {
     ['vue-scrollto/nuxt', { duration: 500, offset: -50 }],
     'nuxt-compress',
     'nuxt-fontawesome',
-    '@/modules/paging.js'
+    '@/modules/paging.js',
+    '@nuxtjs/redirect-module',
   ],
   styleResources: {
     sass: [
@@ -138,6 +139,13 @@ export default {
       }
     }
   },
+  redirect: [
+    {
+      from: '^(\\/[^\\?]*[^\\/])(\\?.*)?$',
+      to: '$1/$2',
+      statusCode: 301
+    }
+  ],
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
@@ -159,10 +167,10 @@ export default {
       const totalPages = Math.ceil(blogRes.total / pageLimit);
       const pageRange = [...Array(totalPages).keys()]
       let urls = pageRange.map(pageNum => ({
-        route: `/blog/page/${pageNum + 1}`
+        route: `/blog/page/${pageNum + 1}/`
       }))
       urls = urls.concat(blogRes.items.map(item => ({
-        route: `/blog/${item.fields.slug}`,
+        route: `/blog/${item.fields.slug}/`,
         payload: item
       })))
       return urls
@@ -171,7 +179,8 @@ export default {
   sitemap: {
     path: '/sitemap.xml',
     hostname: `https://${domain}`,
-    gzip: true
+    gzip: true,
+    trailingSlash: true,
   },
   robots: {
     UserAgent: '*',
@@ -184,5 +193,8 @@ export default {
   },
   'google-gtag': {
     id: 'G-ZKC3660QET'
-  }
+  },
+  router: {
+    trailingSlash: true
+  },
 }
