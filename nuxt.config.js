@@ -6,17 +6,24 @@ const description =
   "群馬県でかくれんぼの楽しさを広めるために活動している団体の公式サイト。老若男女誰でも楽しめる、そんなかくれんぼのイベント情報を発信しています。";
 const pageLimit = 10
 
+const contentful = require('contentful')
+const client = contentful.createClient({
+  space: process.env.CTF_SPACE_ID,
+  accessToken: process.env.CTF_CDA_ACCESS_TOKEN
+})
+
 const fetchBlogRes = async () => {
-  const contentful = require('contentful')
-  const client = contentful.createClient({
-    space: process.env.CTF_SPACE_ID,
-    accessToken: process.env.CTF_CDA_ACCESS_TOKEN
-  })
-  const blogRes = await client.getEntries({
+  return await client.getEntries({
     content_type: 'blog',
     order: '-sys.createdAt'
   })
-  return blogRes
+}
+
+const fetchEventRes = async () => {
+  return await client.getEntries({
+    content_type: 'event',
+    order: 'sys.createdAt'
+  })
 }
 
 export default {
@@ -164,6 +171,7 @@ export default {
   generate: {
     async routes() {
       const blogRes = await fetchBlogRes()
+      const eventRes = await fetchEventRes()
       const totalPages = Math.ceil(blogRes.total / pageLimit);
       const pageRange = [...Array(totalPages).keys()]
       let urls = pageRange.map(pageNum => ({
@@ -171,6 +179,10 @@ export default {
       }))
       urls = urls.concat(blogRes.items.map(item => ({
         route: `/blog/${item.fields.slug}/`,
+        payload: item
+      })))
+      urls = urls.concat(eventRes.items.map(item => ({
+        route: `/event/${item.fields.slug}/`,
         payload: item
       })))
       return urls

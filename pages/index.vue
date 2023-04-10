@@ -1,6 +1,6 @@
 <template lang="pug">
 #wrapper
-  parts-event-button(:event="event")
+  parts-event-button(:event="eventList[0]")
   section.section
     sections-pagetop
   section.section
@@ -43,7 +43,7 @@
       subtitle="Event Schedule",
       description="参加する人この指とまれ"
     )
-    sections-event(:event="event")
+    sections-event-list(:eventList="eventList")
   section.section.section-dark
     parts-section-header#contact(
       logo="svg-contact",
@@ -61,37 +61,36 @@
 export default {
   async asyncData({ app }) {
     const galleryRes = await app.$ctfClient.getEntries({
-      content_type: "gallery",
+      content_type: "gallery"
     });
     let { photos, youtubeIds } = galleryRes.items[0].fields;
     photos = photos.slice(0, 6); // 先頭から6枚のみ表示
 
     const memberRes = await app.$ctfClient.getEntries({
       content_type: "member",
-      order: "fields.position",
+      order: "fields.position"
     });
     const memberList = memberRes.items;
 
     const blogRes = await app.$ctfClient.getEntries({
       content_type: "blog",
       order: "-sys.createdAt",
-      limit: 3,
+      limit: 3
     });
     const blogPosts = blogRes.items;
 
     const eventRes = await app.$ctfClient.getEntries({
       content_type: "event",
-      order: "-sys.createdAt",
-      limit: 1,
+      order: "sys.createdAt"
     });
-    const event = eventRes.items[0];
+    const eventList = eventRes.items;
 
     return {
       photos,
       youtubeIds,
       memberList,
       blogPosts,
-      event,
+      eventList
     };
   },
   head() {
@@ -107,18 +106,22 @@ export default {
         {
           hid: "og:site_name",
           property: "og:site_name",
-          content: process.env.projectName,
+          content: process.env.projectName
         },
         {
           hid: "og:title",
           property: "og:title",
-          content: process.env.pageTitle,
+          content: process.env.pageTitle
         },
         { hid: "og:type", property: "og:type", content: "article" },
         { hid: "og:image", property: "og:image", content: imageUrl },
-        { hid: "og:description", property: "og:description", content: process.env.description },
-        { hid: "og:url", property: "og:url", content: pageUrl },
-      ],
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: process.env.description
+        },
+        { hid: "og:url", property: "og:url", content: pageUrl }
+      ]
     };
   },
   mounted() {
@@ -152,7 +155,7 @@ export default {
     changeClientWidth() {
       const clientWidth = document.body.clientWidth;
       this.$store.commit("resize", clientWidth);
-    },
-  },
+    }
+  }
 };
 </script>
