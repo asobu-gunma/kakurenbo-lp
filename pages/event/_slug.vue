@@ -22,12 +22,17 @@
 
 <script>
 export default {
-  async asyncData({ route, app, env }) {
-    const eventRes = await app.$ctfClient.getEntries({
-      content_type: "event",
-      "fields.slug": route.params.slug
-    });
-    const event = eventRes.items[0];
+  async asyncData({ route, app, payload }) {
+    let event;
+    if (payload) {
+      event = payload[0];
+    } else {
+      const eventRes = await app.$ctfClient.getEntries({
+        content_type: "event",
+        "fields.slug": route.params.slug
+      });
+      event = eventRes.items[0];
+    }
     return {
       event
     };
