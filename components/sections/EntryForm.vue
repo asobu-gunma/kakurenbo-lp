@@ -143,7 +143,8 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default {
   props: {
-    isStopEntry: { type: Boolean, default: false },
+    eventName: { type: String, require: true },
+    isStopEntry: { type: Boolean, default: false }
   },
   data() {
     return {
@@ -154,12 +155,12 @@ export default {
             name: "",
             gender: "",
             age: "",
-            isKids: false,
-          },
+            isKids: false
+          }
         ],
         email: "",
         cognition: [],
-        note: "",
+        note: ""
       },
       cognitionList: [
         "運営者と知り合い",
@@ -171,8 +172,8 @@ export default {
         "YouTube",
         "新聞・メディア",
         "ラジオ",
-        "その他",
-      ],
+        "その他"
+      ]
     };
   },
   methods: {
@@ -181,7 +182,7 @@ export default {
         name: "",
         gender: "",
         age: "",
-        isKids: false,
+        isKids: false
       });
     },
     removeUser(index) {
@@ -206,6 +207,9 @@ export default {
 ${this.subAnnounceText}
 
 ---
+# 参加イベント
+${this.eventName}
+
 ${users.join("\n\n")}
 
 # 代表メールアドレス
@@ -232,7 +236,7 @@ https://www.kakurenbo.club
 https://www.facebook.com/groups/705675266823073
 
 ====================================
-`,
+`
       };
       try {
         await this.$mgClient.messages.create(
@@ -254,7 +258,7 @@ https://www.facebook.com/groups/705675266823073
       } finally {
         this.$nuxt.$loading.finish();
       }
-    },
+    }
   },
   computed: {
     submitText() {
@@ -267,8 +271,8 @@ https://www.facebook.com/groups/705675266823073
       return this.isStopEntry
         ? "キャンセルが入り次第ご連絡いたします！"
         : "追って当日の詳細をご連絡いたします！";
-    },
-  },
+    }
+  }
 };
 </script>
 

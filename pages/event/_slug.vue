@@ -9,7 +9,7 @@
       :description="description",
       :isMainSection="true"
     )
-    sections-event(:event="event", :noDisplayButton="true")
+    sections-event(:event="event" :noDisplayButton="true")
     sections-entry-form(
       v-if="event"
       :eventName="event.fields.title"
@@ -25,8 +25,7 @@ export default {
   async asyncData({ route, app, env }) {
     const eventRes = await app.$ctfClient.getEntries({
       content_type: "event",
-      order: "sys.createdAt",
-      limit: 1
+      "fields.slug": route.params.slug
     });
     const event = eventRes.items[0];
     return {

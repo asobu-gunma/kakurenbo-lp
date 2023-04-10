@@ -1,9 +1,9 @@
 <template lang="pug">
-  .loading-page(v-show="loading" ref="loading")
-    .spinner
-      .bounce1
-      .bounce2
-      .bounce3
+.loading-page(v-show="loading" ref="loading")
+  .spinner
+    .bounce1
+    .bounce2
+    .bounce3
 </template>
 
 <script>
