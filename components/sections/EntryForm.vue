@@ -69,7 +69,8 @@ validation-observer(v-slot="{ handleSubmit, invalid }")
                 )
                   option(value="") 年代を選択してください
                   option(value="未就学児") 未就学児
-                  option(value="小学生") 小学生
+                  option(value="小学生（低学年）") 小学生（低学年）
+                  option(value="小学生（高学年）") 小学生（高学年）
                   option(value="中学生") 中学生
                   option(value="高校生") 高校生
                   option(value="大学生") 大学生
