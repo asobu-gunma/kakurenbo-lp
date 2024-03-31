@@ -30,6 +30,12 @@
               .twitter(v-if="memberProfile.fields.twitter")
                 a(:href="memberProfile.fields.twitter", target="new")
                   fa(:icon="faTwitter")
+              .instagram(v-if="memberProfile.fields.instagram")
+                a(:href="memberProfile.fields.instagram", target="new")
+                  fa(:icon="faInstagram")
+              .youtube(v-if="memberProfile.fields.youTube")
+                a(:href="memberProfile.fields.youTube", target="new")
+                  fa(:icon="faYoutube")
               .website(v-if="memberProfile.fields.website")
                 a(:href="memberProfile.fields.website", target="new")
                   fa(:icon="faGlobe")
@@ -38,22 +44,29 @@
 </template>
 
 <script>
-import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebook,
+  faTwitter,
+  faInstagram,
+  faYoutube
+} from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
 export default {
   props: {
     memberList: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       faFacebook,
       faTwitter,
+      faInstagram,
+      faYoutube,
       faGlobe,
-      memberProfile: {},
+      memberProfile: {}
     };
   },
   methods: {
@@ -66,13 +79,13 @@ export default {
     },
     closeProfile() {
       this.memberProfile = {};
-    },
+    }
   },
   computed: {
     existsProfile() {
       return Object.keys(this.memberProfile).length > 0;
-    },
-  },
+    }
+  }
 };
 </script>
 
