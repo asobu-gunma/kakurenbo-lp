@@ -4,6 +4,56 @@ validation-observer(v-slot="{ handleSubmit, invalid }")
     .container
       .row
         .offset-lg-1.col-lg-10
+          .team-entry(v-if="isTeam")
+            .form-group
+              validation-provider(
+                v-slot="{ errors }",
+                rules="required",
+                name="参加のしかた"
+              )
+                label.legend 参加のしかた
+                .d-flex
+                  .form-check.mr-3
+                    input.form-check-input(
+                      type="radio",
+                      :name="`user_entry_method`",
+                      :id="`user_entry_method_personal`",
+                      :class="{ 'is-invalid': errors[0] }",
+                      value="当日にチーム分け希望",
+                      required,
+                      v-model="entryForm.entryMethod"
+                    )
+                    label.form-check-label(:for="`user_entry_method_personal`") 当日にチーム分け希望
+                  .form-check
+                    input.form-check-input(
+                      type="radio",
+                      :name="`user_entry_method`",
+                      :id="`user_entry_method_team`",
+                      :class="{ 'is-invalid': errors[0] }",
+                      value="あらかじめチームとして参加を希望",
+                      required,
+                      v-model="entryForm.entryMethod"
+                    )
+                    label.form-check-label(
+                      :for="`user_entry_method_team`"
+                    ) あらかじめチームとして参加を希望
+                .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
+              
+            .form-group(v-if="entryForm.entryMethod === 'あらかじめチームとして参加を希望'")
+              validation-provider(
+                v-slot="{ errors }",
+                name="チーム名"
+              )
+                label.legend(for="team_name") チーム名
+                input.form-control.form-control-lg(
+                  type="text",
+                  placeholder="かくれんぼクラブ",
+                  name="team_name",
+                  id="team_name",
+                  class="{ 'is-invalid': errors[0] }",
+                  v-model="entryForm.teamName"
+                )
+                .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
           .user-list(v-for="(user, index) in entryForm.userList", :key="index")
             .form-group
               validation-provider(
@@ -82,9 +132,9 @@ validation-observer(v-slot="{ handleSubmit, invalid }")
                   option(value="一般（60代以上）") 一般（60代以上）
                 .text-danger.mt-2(v-show="errors[0]") {{ errors[0] }}
             .remove-user-button(v-if="index > 0")
-              fa.text-danger(:icon="faTimes", @click="removeUser(index)")
+              fa.text-danger(:icon="faTimes", @click.prevent="removeUser(index)")
           .form-group.text-right
-            button.btn.btn-lg.btn-success(@click="addUser") 参加者を追加する
+            button.btn.btn-lg.btn-success(@click.prevent="addUser") 参加者を追加する
           .form-group
             validation-provider(
               v-slot="{ errors }",
@@ -145,12 +195,15 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 export default {
   props: {
     eventName: { type: String, require: true },
-    isStopEntry: { type: Boolean, default: false }
+    isStopEntry: { type: Boolean, default: false },
+    isTeam: { type: Boolean, default: false }
   },
   data() {
     return {
       faTimes,
       entryForm: {
+        entryMethod: "",
+        teamName: "",
         userList: [
           {
             name: "",
@@ -190,7 +243,29 @@ export default {
       this.entryForm.userList.splice(index, 1);
     },
     async sendMail() {
-      const { userList, email, cognition, note } = this.entryForm;
+      const {
+        entryMethod,
+        teamName,
+        userList,
+        email,
+        cognition,
+        note
+      } = this.entryForm;
+      let team = "";
+      if (this.isTeam) {
+        team =
+          entryMethod === "あらかじめチームとして参加を希望"
+            ? `
+# 参加のしかた
+${entryMethod}
+
+# チーム名
+${teamName}`
+            : `
+# 参加のしかた
+${entryMethod}
+`;
+      }
       const users = userList.map((user, index) => {
         return `# 参加者${index + 1}
 名前: ${user.name}
@@ -210,6 +285,8 @@ ${this.subAnnounceText}
 ---
 # 参加イベント
 ${this.eventName}
+
+${team}
 
 ${users.join("\n\n")}
 
@@ -278,6 +355,12 @@ https://www.facebook.com/groups/705675266823073
 </script>
 
 <style lang="sass" scoped>
+.team-entry
+  padding: 30px 30px 15px
+  border: 1px solid $muted-color
+  border-radius: 10px
+  margin-bottom: 20px
+  position: relative
 .user-list
   padding: 30px 30px 15px
   border: 1px solid $muted-color
