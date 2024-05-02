@@ -14,6 +14,7 @@
       v-if="event"
       :eventName="event.fields.title"
       :isStopEntry="event.fields.isStopEntry"
+      :isTeam="event.fields.isTeam"
     )
     .container(v-else)
       .preparing 準備中です。しばしお待ち下さい。
